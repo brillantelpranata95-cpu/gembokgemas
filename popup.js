@@ -1,4 +1,3 @@
-import { fillOtpInPage } from './src/autofill.js';
 import { generateTOTP, totpRemaining } from './src/otp.js';
 import {
   createVault,
@@ -394,7 +393,7 @@ function updateRingForAccount(account, remaining, period) {
 function startTicker() {
   stopTimers();
   tick();
-  state.tickTimer = setInterval(tick, 250);
+  state.tickTimer = setInterval(tick, 1000);
   startSessionHeartbeat();
 }
 
@@ -541,6 +540,7 @@ async function fillCodeIntoPage(account, row, button) {
     }
 
     const result = await freshTotpForFill(account);
+    const { fillOtpInPage } = await import('./src/autofill.js');
     const [injection] = await chrome.scripting.executeScript({
       target: { tabId: tab.id },
       func: fillOtpInPage,

@@ -1,4 +1,3 @@
-import { parseOtpInput } from './src/migrate.js';
 import {
   accountFingerprint,
   addAccounts,
@@ -811,7 +810,8 @@ function ingestParsed(result) {
   };
 }
 
-function handleDecodedText(text, source = 'paste') {
+async function handleDecodedText(text, source = 'paste') {
+  const { parseOtpInput } = await import('./src/migrate.js');
   const { results, errors } = parseOtpInput(text);
   const statusElement =
     source === 'camera'
@@ -1308,7 +1308,7 @@ function scanTick(timestamp) {
         });
         if (found?.data && !state.seenCodes.has(found.data)) {
           state.seenCodes.add(found.data);
-          handleDecodedText(found.data, 'camera');
+          void handleDecodedText(found.data, 'camera');
         }
       } catch (error) {
         console.error('Pemindaian QR dari kamera gagal:', error);
@@ -1453,7 +1453,7 @@ async function handleQrFiles(fileList) {
           continue;
         }
         decoded += 1;
-        const info = handleDecodedText(text, 'upload');
+        const info = await handleDecodedText(text, 'upload');
         if (info.ok) added += info.added;
       } catch (error) {
         console.error('Gagal membaca gambar QR:', error);
@@ -1533,7 +1533,7 @@ function bindDropZone() {
 /* Tempel tautan                                                       */
 /* ------------------------------------------------------------------ */
 
-function handlePaste() {
+async function handlePaste() {
   const text = els.pasteInput.value.trim();
   if (!text) {
     setStatus(
@@ -1543,7 +1543,7 @@ function handlePaste() {
     );
     return;
   }
-  const info = handleDecodedText(text, 'paste');
+  const info = await handleDecodedText(text, 'paste');
   if (info.ok && info.added > 0) els.pasteInput.value = '';
 }
 

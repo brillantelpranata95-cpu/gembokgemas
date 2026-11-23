@@ -33,8 +33,8 @@ pink sebagai aksen. Semua aset dibuat lokal.
   permanen.
 - Tema desktop 90-an dengan title bar, ticker, tombol bevel, pola checker, dan
   doodle CD / floppy / kaset / CRT.
-- Ringan: CSS tanpa lapisan tema ganda dan decoder QR (257 KB) baru dimuat
-  saat impor kamera/gambar benar-benar dipakai.
+- Ringan: CSS tanpa lapisan tema ganda. Decoder QR (257 KB), parser impor, dan
+  pengisi OTP baru dimuat saat fitur terkait benar-benar dipakai.
 - Tanpa server, tanpa analytics, dan tanpa permintaan jaringan.
 
 ## Nuansa 90-an
