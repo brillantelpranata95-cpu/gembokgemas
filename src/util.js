@@ -84,26 +84,26 @@ export function showToast(element, message, tone = 'success') {
 export function errorMessage(error) {
   const code = error?.message || '';
   const messages = {
-    WRONG_PASSWORD: 'Kata sandi salah.',
-    WEAK_PASSWORD: 'Kata sandi minimal 8 karakter.',
-    LOCKED: 'Brankas terkunci. Buka kunci ulang.',
-    NO_VAULT: 'Brankas belum dibuat.',
-    VAULT_EXISTS: 'Brankas sudah ada.',
-    NAME_REQUIRED: 'Isi nama layanan atau nama akun.',
-    INVALID_SECRET: 'Secret tidak valid. Gunakan format Base32.',
-    INVALID_DIGITS: 'Jumlah digit harus 6 sampai 8.',
-    INVALID_PERIOD: 'Periode harus antara 1 dan 3600 detik.',
-    INVALID_BACKUP: 'File cadangan tidak dikenali.',
-    INVALID_SESSION_KEY: 'Sesi tidak valid. Buka kunci ulang.',
-    ACCOUNT_NOT_FOUND: 'Akun tidak ditemukan.',
-    NOT_HOTP: 'Akun ini bukan HOTP.',
-    NO_FILE: 'Pilih file terlebih dahulu.'
+    WRONG_PASSWORD: 'Kata sandi salah, gan. Coba lagi.',
+    WEAK_PASSWORD: 'Kata sandi minimal 8 karakter. Jangan yang pendek-pendek, ya!',
+    LOCKED: 'Brankas masih terkunci. Buka kunci lagi, ya.',
+    NO_VAULT: 'Brankas belum dibuat, gan. Bikin dulu, yuk!',
+    VAULT_EXISTS: 'Brankas udah ada, kok.',
+    NAME_REQUIRED: 'Isi nama layanan atau nama akun, gan.',
+    INVALID_SECRET: 'Secret nggak valid. Pakai format Base32, ya.',
+    INVALID_DIGITS: 'Jumlah digit harus 6 sampai 8, gan.',
+    INVALID_PERIOD: 'Periode harus antara 1 dan 3600 detik, ya.',
+    INVALID_BACKUP: 'File cadangan nggak dikenali, gan.',
+    INVALID_SESSION_KEY: 'Sesi nggak valid. Buka kunci lagi, ya.',
+    ACCOUNT_NOT_FOUND: 'Akun nggak ketemu, gan.',
+    NOT_HOTP: 'Akun ini bukan HOTP, kok.',
+    NO_FILE: 'Pilih file dulu, ya.'
   };
   if (messages[code]) return messages[code];
   if (/incorrect|bad decrypt|operationerror/i.test(`${code} ${error?.name || ''}`)) {
-    return 'Kata sandi salah.';
+    return 'Kata sandi salah, gan. Coba lagi.';
   }
-  return code || 'Terjadi kesalahan. Coba lagi.';
+  return code || 'Ada yang error. Coba lagi, ya.';
 }
 
 export function formatDateTime(timestamp) {
@@ -138,7 +138,7 @@ export function downloadText(filename, text) {
   setTimeout(() => URL.revokeObjectURL(url), 4000);
 }
 
-export function setBusy(button, busy, busyLabel = 'Memproses…') {
+export function setBusy(button, busy, busyLabel = 'Lagi diproses… sabar…') {
   if (!button) return;
   if (busy) {
     if (!button.dataset.originalLabel) {

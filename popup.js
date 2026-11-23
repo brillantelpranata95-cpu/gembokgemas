@@ -113,14 +113,14 @@ function resetReveals() {
     if (input) input.type = 'password';
     button.classList.remove('is-visible');
     button.setAttribute('aria-pressed', 'false');
-    button.setAttribute('aria-label', 'Tampilkan kata sandi');
+    button.setAttribute('aria-label', 'Intip kata sandi');
   }
 }
 
 function showSetup() {
   resetSensitiveState();
   showPane(els.setupPane);
-  els.headerSub.textContent = 'Authenticator 2FA · Est. 199X';
+  els.headerSub.textContent = '2FA jadul · Est. 199X';
   els.setupForm.reset();
   els.setupError.classList.add('hidden');
   els.setupError.textContent = '';
@@ -131,7 +131,7 @@ function showSetup() {
 function showUnlock(message = '') {
   resetSensitiveState();
   showPane(els.unlockPane);
-  els.headerSub.textContent = 'Terenkripsi · Terkunci';
+  els.headerSub.textContent = 'Terenkripsi · Masih terkunci';
   els.unlockForm.reset();
   els.unlockError.classList.add('hidden');
   els.unlockError.textContent = '';
@@ -150,7 +150,7 @@ function showMain() {
 
 function updateHeader() {
   if (!state.unlocked) return;
-  els.headerSub.textContent = `${state.accounts.length} akun · Terenkripsi`;
+  els.headerSub.textContent = `${state.accounts.length} akun · Aman terenkripsi`;
   els.accountCount.textContent = `${state.accounts.length} akun`;
 }
 
@@ -213,12 +213,12 @@ function createAccountRow(account) {
   main.type = 'button';
   main.className = 'account-main';
   main.title =
-    account.type === 'hotp' ? 'Buat kode berikutnya' : 'Salin kode';
+    account.type === 'hotp' ? 'Buat kode HOTP berikutnya (klik!)' : 'Salin kode (klik!)';
   main.setAttribute(
     'aria-label',
     account.type === 'hotp'
-      ? `Buat kode HOTP berikutnya untuk ${label}`
-      : `Salin kode untuk ${label}`
+      ? `Buat kode HOTP baru untuk ${label} — klik, ya`
+      : `Salin kode ${label} ke clipboard`
   );
 
   const avatar = document.createElement('span');
@@ -231,11 +231,11 @@ function createAccountRow(account) {
   meta.className = 'meta';
   const issuer = document.createElement('span');
   issuer.className = 'issuer';
-  issuer.textContent = account.issuer || account.name || 'Akun';
+  issuer.textContent = account.issuer || account.name || 'Akun tanpa nama';
   const name = document.createElement('span');
   name.className = 'account-name';
   if (account.issuer) {
-    name.textContent = account.name || 'Akun';
+    name.textContent = account.name || 'Akun tanpa nama';
   } else if (account.type === 'hotp') {
     name.textContent = 'HOTP';
   } else {
@@ -247,11 +247,11 @@ function createAccountRow(account) {
   code.className = 'code';
   if (account.type === 'hotp') {
     const generated = state.hotpCodes.get(account.id);
-    code.textContent = generated ? formatCode(generated.code) : 'Ketuk';
+    code.textContent = generated ? formatCode(generated.code) : 'Ketuk!';
     if (!generated) code.classList.add('tap');
     row.title = generated
-      ? `Kode HOTP #${generated.usedCounter} · ketuk untuk kode berikutnya`
-      : 'Ketuk untuk membuat kode HOTP';
+      ? `Kode HOTP #${generated.usedCounter} · ketuk lagi buat kode baru`
+      : 'Ketuk buat dapet kode HOTP baru!';
   } else {
     const cached = state.codes.get(account.id);
     const counter = Math.floor(
@@ -289,9 +289,9 @@ function createAccountRow(account) {
     const fill = document.createElement('button');
     fill.type = 'button';
     fill.className = 'fill-btn';
-    fill.textContent = 'Isi';
-    fill.title = `Isi kode ${label} ke halaman ini`;
-    fill.setAttribute('aria-label', `Isi kode ${label} ke halaman ini`);
+    fill.textContent = 'Isi!';
+    fill.title = `Isi kode ${label} ke kolom OTP di halaman ini`;
+    fill.setAttribute('aria-label', `Isi kode ${label} ke kolom OTP di halaman ini`);
     fill.addEventListener('click', () => {
       fillCodeIntoPage(account, row, fill);
     });
@@ -403,7 +403,7 @@ function startSessionHeartbeat() {
     if (!state.unlocked) return;
     try {
       const active = await isSessionActive();
-      if (!active) showUnlock('Sesi berakhir. Buka kunci lagi.');
+      if (!active) showUnlock('Sesi habis, gan. Buka kunci lagi, ya.');
     } catch (error) {
       console.error('Gagal memeriksa sesi:', error);
     }
@@ -423,12 +423,12 @@ async function handleTotpClick(account, row) {
     flashRow(row);
     showToast(
       els.toast,
-      copied ? 'Kode disalin ke clipboard' : 'Gagal menyalin kode',
+      copied ? 'Kode berhasil disalin — tinggal tempel, gan!' : 'Gagal nyalin kode. Coba klik lagi, ya.',
       copied ? 'success' : 'error'
     );
   } catch (error) {
     console.error('Gagal membuat kode TOTP:', error);
-    showToast(els.toast, 'Gagal membuat kode.', 'error');
+    showToast(els.toast, 'Gagal bikin kode. Coba lagi, ya.', 'error');
   }
 }
 
@@ -448,22 +448,22 @@ async function handleHotpClick(account, row) {
     });
     codeElement.classList.remove('tap');
     codeElement.textContent = formatCode(result.code);
-    row.title = `Kode HOTP #${result.usedCounter} · ketuk untuk kode berikutnya`;
+    row.title = `Kode HOTP #${result.usedCounter} · ketuk lagi buat kode baru`;
     row.removeAttribute('aria-busy');
     const copied = await copyText(result.code);
     flashRow(row);
     showToast(
       els.toast,
       copied
-        ? `Kode HOTP #${result.usedCounter} disalin`
-        : 'Kode dibuat, tetapi gagal disalin',
+        ? `Kode HOTP #${result.usedCounter} tersalin!`
+        : 'Kode jadi, tapi gagal disalin. Coba lagi.',
       copied ? 'success' : 'error'
     );
   } catch (error) {
     codeElement.textContent = previousLabel;
     row.removeAttribute('aria-busy');
     if (error.message === 'LOCKED') {
-      showUnlock('Sesi berakhir. Buka kunci lagi.');
+      showUnlock('Sesi habis, gan. Buka kunci lagi, ya.');
       return;
     }
     showToast(els.toast, errorMessage(error), 'error');
@@ -475,13 +475,13 @@ async function handleHotpClick(account, row) {
 function fillErrorMessage(reason) {
   switch (reason) {
     case 'NO_FIELD':
-      return 'Kolom kode tidak ditemukan. Klik dulu kolom OTP di halaman, lalu coba lagi.';
+      return 'Kolom OTP nggak ketemu. Klik dulu kolomnya di halaman, baru tekan Isi lagi, gan.';
     case 'MISMATCH':
-      return 'Jumlah digit tidak cocok dengan kolom kode di halaman.';
+      return 'Jumlah digit nggak cocok sama kolomnya. Cek lagi, ya.';
     case 'BAD_CODE':
-      return 'Kode TOTP tidak valid.';
+      return 'Kode TOTP nggak valid.';
     default:
-      return 'Kolom kode tidak bisa diisi otomatis.';
+      return 'Kolom kode nggak bisa diisi otomatis, gan.';
   }
 }
 
@@ -507,7 +507,7 @@ async function fillCodeIntoPage(account, row, button) {
   row.setAttribute('aria-busy', 'true');
   try {
     if (!(await isSessionActive())) {
-      showUnlock('Sesi berakhir. Buka kunci lagi.');
+      showUnlock('Sesi habis, gan. Buka kunci lagi, ya.');
       return;
     }
     const [tab] = await chrome.tabs.query({
@@ -517,7 +517,7 @@ async function fillCodeIntoPage(account, row, button) {
     if (!tab?.id) {
       showToast(
         els.toast,
-        'Tab aktif tidak ditemukan. Buka halaman login lalu coba lagi.',
+        'Tab aktif nggak ketemu. Buka halaman login dulu, baru coba lagi, gan.',
         'error'
       );
       return;
@@ -525,7 +525,7 @@ async function fillCodeIntoPage(account, row, button) {
     if (!tab.url) {
       showToast(
         els.toast,
-        'Akses halaman aktif tidak tersedia. Buka popup dari ikon GembokGemas di toolbar.',
+        'Halaman aktif nggak bisa diakses. Buka popup lewat ikon GembokGemas di toolbar, gan.',
         'error'
       );
       return;
@@ -533,7 +533,7 @@ async function fillCodeIntoPage(account, row, button) {
     if (!/^https?:/i.test(tab.url)) {
       showToast(
         els.toast,
-        'Halaman ini tidak bisa diisi otomatis. Buka situs login biasa.',
+        'Halaman ini nggak bisa diisi otomatis. Buka situs login biasa, ya.',
         'error'
       );
       return;
@@ -553,10 +553,10 @@ async function fillCodeIntoPage(account, row, button) {
     }
 
     flashRow(row);
-    showToast(els.toast, 'Kode diisi ke kolom verifikasi.', 'success');
+    showToast(els.toast, 'Bip bip! Kode masuk ke kolom verifikasi. Beres!', 'success');
   } catch (error) {
     if (error?.message === 'LOCKED') {
-      showUnlock('Sesi berakhir. Buka kunci lagi.');
+      showUnlock('Sesi habis, gan. Buka kunci lagi, ya.');
       return;
     }
     console.error('Gagal mengisi kode ke halaman:', error);
@@ -566,14 +566,14 @@ async function fillCodeIntoPage(account, row, button) {
     showToast(
       els.toast,
       blocked
-        ? 'Halaman ini tidak mengizinkan pengisian otomatis.'
-        : 'Gagal mengisi kode. Coba salin manual.',
+        ? 'Halaman ini melarang isi-otomatis. Salin manual aja, gan.'
+        : 'Gagal isi kode. Coba salin manual, ya.',
       'error'
     );
   } finally {
     row.removeAttribute('aria-busy');
     button.disabled = false;
-    button.textContent = 'Isi';
+    button.textContent = 'Isi!';
   }
 }
 
@@ -601,7 +601,7 @@ async function handleSetupSubmit(event) {
   if (password.length < 8) {
     showFormError(
       els.setupError,
-      'Kata sandi minimal 8 karakter.',
+      'Kata sandi minimal 8 karakter. Jangan yang pendek-pendek, ya!',
       els.setupForm
     );
     return;
@@ -609,20 +609,20 @@ async function handleSetupSubmit(event) {
   if (password !== confirmation) {
     showFormError(
       els.setupError,
-      'Kata sandi dan konfirmasi tidak sama.',
+      'Kata sandi dan konfirmasinya beda. Ketik ulang, gan!',
       els.setupForm
     );
     return;
   }
 
-  setBusy(els.setupSubmit, true, 'Membuat brankas…');
+  setBusy(els.setupSubmit, true, 'Lagi bikin brankas… sabar, ya…');
   try {
     await createVault(password);
     state.accounts = [];
     els.setupForm.reset();
     resetReveals();
     showMain();
-    showToast(els.toast, 'Brankas dibuat. Tambahkan akun pertamamu.');
+    showToast(els.toast, 'Brankas jadi! Sekarang tambah akun pertamamu, gan.');
   } catch (error) {
     if (error.message === 'VAULT_EXISTS') {
       showUnlock();
@@ -639,10 +639,10 @@ async function handleUnlockSubmit(event) {
   els.unlockError.classList.add('hidden');
   const password = els.unlockPassword.value;
   if (!password) {
-    showFormError(els.unlockError, 'Masukkan kata sandi.', els.unlockForm);
+    showFormError(els.unlockError, 'Isi kata sandinya dulu, gan.', els.unlockForm);
     return;
   }
-  setBusy(els.unlockSubmit, true, 'Membuka kunci…');
+  setBusy(els.unlockSubmit, true, 'Lagi buka kunci… bip…');
   try {
     const result = await unlockVault(password);
     state.accounts = result.accounts;
@@ -662,13 +662,13 @@ async function handleUnlockSubmit(event) {
 
 async function handleForgot() {
   const confirmed = window.confirm(
-    'Kata sandi tidak bisa dipulihkan. Reset akan menghapus semua akun di brankas ini.\n\nJika kamu punya cadangan terenkripsi, cadangan itu tetap bisa dipulihkan setelah membuat brankas baru.\n\nReset brankas sekarang?'
+    'Kata sandi nggak bisa dipulihkan, bro. Reset bakal hapus semua akun di brankas ini.\n\nPunya cadangan terenkripsi? Tenang, tetap bisa dipulihkan setelah bikin brankas baru.\n\nYakin reset sekarang?'
   );
   if (!confirmed) return;
   try {
     await resetVault();
     showSetup();
-    showToast(els.toast, 'Brankas direset. Buat kata sandi baru.');
+    showToast(els.toast, 'Brankas direset. Bikin kata sandi baru, ya!');
   } catch (error) {
     showToast(els.toast, errorMessage(error), 'error');
   }
@@ -677,7 +677,7 @@ async function handleForgot() {
 async function handleLock() {
   await lockVault();
   showUnlock();
-  showToast(els.toast, 'Brankas dikunci');
+  showToast(els.toast, 'Brankas terkunci. Aman…');
 }
 
 function bindEvents() {
@@ -711,7 +711,7 @@ function bindEvents() {
       button.setAttribute('aria-pressed', String(show));
       button.setAttribute(
         'aria-label',
-        show ? 'Sembunyikan kata sandi' : 'Tampilkan kata sandi'
+        show ? 'Tutup intipan kata sandi' : 'Intip kata sandi'
       );
       input.focus();
     });
@@ -736,11 +736,11 @@ async function init() {
   } catch (error) {
     console.error('Gagal membuka brankas:', error);
     await lockVault();
-    showUnlock('Sesi tidak valid. Buka kunci lagi.');
+    showUnlock('Sesi nggak valid. Buka kunci lagi, ya.');
   }
 }
 
 init().catch((error) => {
   console.error('GembokGemas gagal dimuat:', error);
-  showUnlock('Gagal memuat brankas. Coba buka ulang ekstensi.');
+  showUnlock('Gagal muat brankas. Coba buka ulang ekstensi, gan.');
 });

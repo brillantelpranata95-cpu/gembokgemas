@@ -17,7 +17,7 @@
                 <path d="M9 2h6v7h7v6h-7v7H9v-7H2V9h7z" fill="#ffe58a" stroke="#2a2140" stroke-width="2" stroke-linejoin="round"></path>
               </svg></span
             >
-            <span class="brand-sub" id="headerSub">Authenticator 2FA · Est. 199X</span>
+            <span class="brand-sub" id="headerSub">2FA jadul · Est. 199X</span>
           </div>
           <span class="brand-badge" aria-hidden="true">90s</span>
         </div>
@@ -26,8 +26,8 @@
             class="icon-btn hidden"
             id="lockBtn"
             type="button"
-            title="Kunci brankas"
-            aria-label="Kunci brankas"
+            title="Kunci brankas (klik buat ngunci)"
+            aria-label="Kunci brankas (klik buat ngunci)"
           >
             <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <rect x="4" y="11" width="16" height="10" rx="2"></rect>
@@ -38,8 +38,8 @@
             class="icon-btn hidden"
             id="settingsBtn"
             type="button"
-            title="Pengaturan dan cadangan"
-            aria-label="Pengaturan dan cadangan"
+            title="Pengaturan & cadangan (jangan lupa backup!)"
+            aria-label="Pengaturan & cadangan (jangan lupa backup!)"
           >
             <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <circle cx="12" cy="12" r="3"></circle>
@@ -51,14 +51,14 @@
 
       <div class="ticker" aria-hidden="true">
         <div class="ticker-track">
-          <span>★ 100% OFFLINE ★ TANPA SERVER ★ TANPA ANALYTICS ★ TOTP + HOTP ★ IMPOR QR GOOGLE AUTHENTICATOR ★</span>
-          <span>★ 100% OFFLINE ★ TANPA SERVER ★ TANPA ANALYTICS ★ TOTP + HOTP ★ IMPOR QR GOOGLE AUTHENTICATOR ★</span>
+          <span>★ 100% OFFLINE ★ TANPA SERVER ★ TANPA ANALYTICS ★ TOTP + HOTP ★ IMPOR QR GOOGLE AUTH ★ JANGAN LUPA BACKUP ★</span>
+          <span>★ 100% OFFLINE ★ TANPA SERVER ★ TANPA ANALYTICS ★ TOTP + HOTP ★ IMPOR QR GOOGLE AUTH ★ JANGAN LUPA BACKUP ★</span>
         </div>
       </div>
 
       <main class="main">
         <section id="loadingPane" class="pane pane-center">
-          <span class="spinner" aria-label="Memuat"></span>
+          <span class="spinner" aria-label="Memuat, sabar ya…"></span>
         </section>
 
         <section id="setupPane" class="pane gate hidden">
@@ -68,11 +68,11 @@
               <path d="M9 12l2 2 4-4"></path>
             </svg>
           </div>
-          <span class="gate-kicker">Mulai dari sini</span>
-          <h1>Buat brankas terenkripsi</h1>
+          <span class="gate-kicker">Mulai dari sini, gan!</span>
+          <h1>Buat brankas terenkripsi ✨</h1>
           <p class="gate-sub">
-            Kode 2FA kamu dienkripsi di perangkat ini dengan kata sandi utama.
-            Tanpa server, tanpa analytics—100% offline.
+            Kode 2FA kamu dienkripsi di perangkat ini pakai kata sandi utama.
+            Tanpa server, tanpa analytics—100% offline, gan. Anti-mata-mata!
           </p>
 
           <form id="setupForm" class="form" novalidate>
@@ -82,12 +82,12 @@
                 class="text-input"
                 id="setupPassword"
                 type="password"
-                placeholder="Minimal 8 karakter"
+                placeholder="Min. 8 karakter, jangan '123456'!"
                 autocomplete="new-password"
                 minlength="8"
                 required
               />
-              <button class="reveal" type="button" data-target="setupPassword" aria-label="Tampilkan kata sandi" aria-pressed="false">
+              <button class="reveal" type="button" data-target="setupPassword" aria-label="Intip kata sandi" aria-pressed="false">
                 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"></path>
                   <circle cx="12" cy="12" r="3"></circle>
@@ -101,12 +101,12 @@
                 class="text-input"
                 id="setupConfirm"
                 type="password"
-                placeholder="Ketik ulang kata sandi"
+                placeholder="Ketik ulang, biar yakin"
                 autocomplete="new-password"
                 minlength="8"
                 required
               />
-              <button class="reveal" type="button" data-target="setupConfirm" aria-label="Tampilkan kata sandi" aria-pressed="false">
+              <button class="reveal" type="button" data-target="setupConfirm" aria-label="Intip kata sandi" aria-pressed="false">
                 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"></path>
                   <circle cx="12" cy="12" r="3"></circle>
@@ -115,13 +115,13 @@
             </div>
 
             <div class="form-error hidden" id="setupError" role="alert"></div>
-            <button class="primary w-full" id="setupSubmit" type="submit">Buat brankas</button>
+            <button class="primary w-full" id="setupSubmit" type="submit">Buat brankas!</button>
           </form>
 
           <div class="callout callout-warn">
-            Kata sandi ini tidak bisa dipulihkan. Jika lupa, akun harus
-            diimpor ulang dari Google Authenticator atau cadangan terenkripsi.
-            Kata sandi hanya diminta sekali per sesi Chrome.
+            ⚠ Kata sandi ini tidak bisa dipulihkan, ya. Lupa? Harus impor ulang
+            dari Google Authenticator atau cadangan terenkripsi. Diminta sekali
+            per sesi Chrome. Simpan baik-baik!
           </div>
         </section>
 
@@ -133,11 +133,11 @@
               <circle cx="12" cy="16" r="1"></circle>
             </svg>
           </div>
-          <span class="gate-kicker">Brankas lokal</span>
-          <h1>Brankas terkunci</h1>
+          <span class="gate-kicker">Brankas lokal (punyamu sendiri)</span>
+          <h1>Brankas terkunci, gan</h1>
           <p class="gate-sub">
-            Masukkan kata sandi utama untuk membuka kode 2FA kamu. Semua kode
-            tetap di perangkat ini.
+            Masukkan kata sandi utama buat membuka kode 2FA kamu. Semua kode
+            tetap di perangkat ini—nggak kemana-mana, gan.
           </p>
 
           <form id="unlockForm" class="form" novalidate>
@@ -147,11 +147,11 @@
                 class="text-input"
                 id="unlockPassword"
                 type="password"
-                placeholder="Kata sandi"
+                placeholder="Kata sandi rahasiamu…"
                 autocomplete="current-password"
                 required
               />
-              <button class="reveal" type="button" data-target="unlockPassword" aria-label="Tampilkan kata sandi" aria-pressed="false">
+              <button class="reveal" type="button" data-target="unlockPassword" aria-label="Intip kata sandi" aria-pressed="false">
                 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"></path>
                   <circle cx="12" cy="12" r="3"></circle>
@@ -159,10 +159,10 @@
               </button>
             </div>
             <div class="form-error hidden" id="unlockError" role="alert"></div>
-            <button class="primary w-full" id="unlockSubmit" type="submit">Buka kunci</button>
+            <button class="primary w-full" id="unlockSubmit" type="submit">Buka kunci!</button>
           </form>
 
-          <button class="link-btn" id="forgotBtn" type="button">Lupa kata sandi?</button>
+          <button class="link-btn" id="forgotBtn" type="button">Lupa kata sandi? (jangan panik)</button>
         </section>
 
         <section id="mainPane" class="pane main-pane hidden">
@@ -174,7 +174,7 @@
             <input
               id="searchInput"
               type="search"
-              placeholder="Cari akun…"
+              placeholder="Cari akun… (ketik aja)"
               autocomplete="off"
               spellcheck="false"
               aria-label="Cari akun"
@@ -183,7 +183,7 @@
 
           <div class="list-meta" id="listMeta">
             <span id="accountCount">0 akun</span>
-            <span class="local-badge"><span class="dot"></span>Terenkripsi lokal</span>
+            <span class="local-badge"><span class="dot"></span>Terenkripsi lokal ✓</span>
           </div>
 
           <div id="accountList" class="account-list" role="list"></div>
@@ -192,10 +192,10 @@
             <div class="empty-visual">
               <span class="empty-badge" aria-hidden="true">0</span>
             </div>
-            <h2>Brankas masih kosong</h2>
-            <p>Impor dari Google Authenticator lewat QR ekspor resmi, atau tambahkan akun manual. Semua kode dibuat offline.</p>
-            <button class="primary w-full" id="emptyImportBtn" type="button">Impor dari Google Authenticator</button>
-            <button class="ghost w-full" id="emptyManualBtn" type="button">Tambah manual</button>
+            <h2>Brankas masih kosong (sepi banget)</h2>
+            <p>Impor dari Google Authenticator lewat QR ekspor resmi, atau tambah manual. Semua kode dibuat offline—bip bip, beres!</p>
+            <button class="primary w-full" id="emptyImportBtn" type="button">Impor dari Google Authenticator ✨</button>
+            <button class="ghost w-full" id="emptyManualBtn" type="button">Tambah manual ✍️</button>
           </div>
 
           <div id="noResults" class="empty compact hidden">
@@ -205,9 +205,9 @@
                 <path d="M20 20l-3.5-3.5"></path>
               </svg>
             </div>
-            <h2>Tidak ditemukan</h2>
-            <p>Tidak ada akun yang cocok dengan pencarian.</p>
-            <button class="ghost" id="clearSearchBtn" type="button">Hapus pencarian</button>
+            <h2>Nggak ketemu!</h2>
+            <p>Akun yang kamu cari nggak ada di sini. Coba kata kunci lain, gan.</p>
+            <button class="ghost" id="clearSearchBtn" type="button">Hapus pencarian (reset!)</button>
           </div>
         </section>
       </main>
@@ -217,7 +217,7 @@
           <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
             <path d="M12 5v14M5 12h14"></path>
           </svg>
-          Tambah akun
+          Tambah akun ✨
         </button>
       </footer>
 

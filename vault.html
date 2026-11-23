@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>GembokGemas — Brankas 2FA 90-an</title>
+    <title>GembokGemas — Brankas 2FA Jadul</title>
     <link rel="stylesheet" href="vault.css" />
   </head>
   <body>
@@ -12,10 +12,10 @@
         <div class="page-brand">
           <img class="page-logo" src="icons/icon48.png" alt="" />
           <div class="page-brand-text">
-            <span class="page-eyebrow">Brankas 2FA · Est. 199X</span>
+            <span class="page-eyebrow">2FA jadul · Est. 199X</span>
             <h1>GembokGemas</h1>
           </div>
-          <span class="page-sticker" aria-hidden="true">100% OFFLINE!</span>
+          <span class="page-sticker" aria-hidden="true">100% OFFLINE, GAN!</span>
         </div>
         <div class="page-actions">
           <span class="vault-badge is-locked" id="vaultBadge">
@@ -27,7 +27,7 @@
               <rect x="4" y="11" width="16" height="10" rx="2"></rect>
               <path d="M8 11V7a4 4 0 0 1 8 0v4"></path>
             </svg>
-            Kunci
+            Kunci!
           </button>
         </div>
       </header>
@@ -40,18 +40,18 @@
               <path d="M9 12l2 2 4-4"></path>
             </svg>
           </div>
-          <span class="gate-kicker">Mulai dari sini</span>
-          <h1>Buat brankas terenkripsi</h1>
+          <span class="gate-kicker">Mulai dari sini, gan!</span>
+          <h1>Buat brankas terenkripsi ✨</h1>
           <p class="gate-sub">
-            Semua kode 2FA dienkripsi di perangkat ini dengan kata sandi utama.
-            Tanpa server, tanpa analytics—100% offline.
+            Semua kode 2FA dienkripsi di perangkat ini pakai kata sandi utama.
+            Tanpa server, tanpa analytics—100% offline. Anti-mata-mata!
           </p>
 
           <form class="form" id="gateSetupForm" novalidate>
             <label class="field-label" for="gateSetupPassword">Kata sandi utama</label>
             <div class="input-wrap">
-              <input class="text-input" id="gateSetupPassword" type="password" placeholder="Minimal 8 karakter" autocomplete="new-password" minlength="8" required />
-              <button class="reveal" type="button" data-target="gateSetupPassword" aria-label="Tampilkan kata sandi" aria-pressed="false">
+              <input class="text-input" id="gateSetupPassword" type="password" placeholder="Min. 8 karakter, jangan '123456'!" autocomplete="new-password" minlength="8" required />
+              <button class="reveal" type="button" data-target="gateSetupPassword" aria-label="Intip kata sandi" aria-pressed="false">
                 <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"></path>
                   <circle cx="12" cy="12" r="3"></circle>
@@ -61,8 +61,8 @@
 
             <label class="field-label" for="gateSetupConfirm">Ulangi kata sandi</label>
             <div class="input-wrap">
-              <input class="text-input" id="gateSetupConfirm" type="password" placeholder="Ketik ulang kata sandi" autocomplete="new-password" minlength="8" required />
-              <button class="reveal" type="button" data-target="gateSetupConfirm" aria-label="Tampilkan kata sandi" aria-pressed="false">
+              <input class="text-input" id="gateSetupConfirm" type="password" placeholder="Ketik ulang, biar yakin" autocomplete="new-password" minlength="8" required />
+              <button class="reveal" type="button" data-target="gateSetupConfirm" aria-label="Intip kata sandi" aria-pressed="false">
                 <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"></path>
                   <circle cx="12" cy="12" r="3"></circle>
@@ -71,13 +71,13 @@
             </div>
 
             <div class="form-error hidden" id="gateSetupError" role="alert"></div>
-            <button class="btn btn-primary btn-block" id="gateSetupSubmit" type="submit">Buat brankas</button>
+            <button class="btn btn-primary btn-block" id="gateSetupSubmit" type="submit">Buat brankas!</button>
           </form>
 
           <div class="callout callout-warn">
-            <strong>Penting:</strong> kata sandi tidak dapat dipulihkan. Buat
-            cadangan terenkripsi secara rutin setelah menambahkan akun. Kata
-            sandi hanya diminta sekali per sesi Chrome.
+            <strong>Penting, gan:</strong> kata sandi tidak bisa dipulihkan. Bikin
+            cadangan terenkripsi secara rutin setelah nambah akun. Kata sandi
+            cuma diminta sekali per sesi Chrome.
           </div>
         </section>
 
@@ -89,17 +89,17 @@
               <circle cx="12" cy="16" r="1"></circle>
             </svg>
           </div>
-          <span class="gate-kicker">Brankas lokal</span>
-          <h1>Buka brankas</h1>
+          <span class="gate-kicker">Brankas lokal (punyamu)</span>
+          <h1>Buka brankas, yuk!</h1>
           <p class="gate-sub">
-            Masukkan kata sandi utama untuk mengelola akun dan kode 2FA.
+            Masukkan kata sandi utama buat ngatur akun dan kode 2FA kamu.
           </p>
 
           <form class="form" id="gateUnlockForm" novalidate>
             <label class="field-label" for="gateUnlockPassword">Kata sandi utama</label>
             <div class="input-wrap">
-              <input class="text-input" id="gateUnlockPassword" type="password" placeholder="Kata sandi" autocomplete="current-password" required />
-              <button class="reveal" type="button" data-target="gateUnlockPassword" aria-label="Tampilkan kata sandi" aria-pressed="false">
+              <input class="text-input" id="gateUnlockPassword" type="password" placeholder="Kata sandi rahasiamu…" autocomplete="current-password" required />
+              <button class="reveal" type="button" data-target="gateUnlockPassword" aria-label="Intip kata sandi" aria-pressed="false">
                 <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"></path>
                   <circle cx="12" cy="12" r="3"></circle>
@@ -107,20 +107,20 @@
               </button>
             </div>
             <div class="form-error hidden" id="gateUnlockError" role="alert"></div>
-            <button class="btn btn-primary btn-block" id="gateUnlockSubmit" type="submit">Buka kunci</button>
+            <button class="btn btn-primary btn-block" id="gateUnlockSubmit" type="submit">Buka kunci!</button>
           </form>
 
-          <button class="link-btn" id="gateForgotBtn" type="button">Lupa kata sandi?</button>
+          <button class="link-btn" id="gateForgotBtn" type="button">Lupa kata sandi? (jangan panik)</button>
           <p class="gate-footnote">
-            Punya file cadangan? Reset brankas, buat kata sandi baru, lalu
-            pulihkan dari tab <strong>Cadangan</strong>.
+            Punya file cadangan? Reset brankas, bikin kata sandi baru, lalu
+            pulihkan dari tab <strong>Cadangan</strong>. Tenang, masih ada jalan.
           </p>
         </section>
       </div>
 
       <div class="workspace hidden" id="workspace">
         <div class="workspace-bar">
-          <nav class="tabs" role="tablist" aria-label="Bagian brankas">
+          <nav class="tabs" role="tablist" aria-label="Bagian-bagian brankas">
             <button class="tab is-active" id="tabAccounts" type="button" role="tab" aria-selected="true" data-tab="accounts">Akun</button>
             <button class="tab" id="tabImport" type="button" role="tab" aria-selected="false" data-tab="import">Impor</button>
             <button class="tab" id="tabBackup" type="button" role="tab" aria-selected="false" data-tab="backup">Cadangan</button>
@@ -139,7 +139,7 @@
           <section class="panel" id="panelAccounts" data-panel="accounts">
             <div class="panel-heading">
               <div class="panel-title">
-                <h2>Akun tersimpan</h2>
+                <h2>Akun tersimpan 💾</h2>
                 <p id="accountsCountText">0 akun</p>
               </div>
               <div class="heading-actions">
@@ -148,13 +148,13 @@
                     <circle cx="11" cy="11" r="7"></circle>
                     <path d="M20 20l-3.5-3.5"></path>
                   </svg>
-                  <input id="accountSearch" type="search" placeholder="Cari akun…" autocomplete="off" spellcheck="false" aria-label="Cari akun" />
+                  <input id="accountSearch" type="search" placeholder="Cari akun… (ketik aja)" autocomplete="off" spellcheck="false" aria-label="Cari akun" />
                 </div>
                 <button class="btn btn-primary" id="accountsAddBtn" type="button">
                   <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
                     <path d="M12 5v14M5 12h14"></path>
                   </svg>
-                  Tambah akun
+                  Tambah akun ✨
                 </button>
               </div>
             </div>
@@ -175,14 +175,14 @@
               <div class="empty-state hidden" id="accountsEmpty">
                 <div class="empty-visual">
                 </div>
-                <h3 id="accountsEmptyTitle">Belum ada akun</h3>
+                <h3 id="accountsEmptyTitle">Belum ada akun (sepi…)</h3>
                 <p id="accountsEmptyText">
-                  Impor dari Google Authenticator atau tambahkan akun secara
-                  manual untuk mulai membuat kode.
+                  Impor dari Google Authenticator atau tambah akun manual buat
+                  mulai bikin kode.
                 </p>
                 <div class="empty-actions" id="accountsEmptyActions">
-                  <button class="btn btn-primary" id="accountsEmptyImport" type="button">Impor akun</button>
-                  <button class="btn btn-ghost" id="accountsEmptyManual" type="button">Tambah manual</button>
+                  <button class="btn btn-primary" id="accountsEmptyImport" type="button">Impor akun 📥</button>
+                  <button class="btn btn-ghost" id="accountsEmptyManual" type="button">Tambah manual ✍️</button>
                 </div>
               </div>
             </div>
@@ -191,15 +191,15 @@
           <section class="panel hidden" id="panelImport" data-panel="import">
             <div class="panel-heading">
               <div class="panel-title">
-                <h2>Impor akun <span class="sticker-badge">Baru!</span></h2>
-                <p>Pindahkan akun dari Google Authenticator di ponselmu. 100% offline, tanpa server.</p>
+                <h2>Impor akun <span class="sticker-badge">Mantap!</span></h2>
+                <p>Pindahkan akun dari Google Authenticator di ponselmu. 100% offline, tanpa server—aman, gan.</p>
               </div>
             </div>
 
             <div class="notice">
               <span class="notice-icon">i</span>
               <div>
-                <strong>Google Authenticator tidak menyediakan API atau koneksi langsung.</strong>
+                <strong>Google Authenticator nggak nyediain API atau koneksi langsung, gan.</strong>
                 <p>
                   Aplikasi ini tidak dapat membaca brankas Google di ponselmu
                   secara langsung. Gunakan fitur resmi <em>Transfer accounts →
@@ -213,23 +213,23 @@
             <div class="import-grid">
               <section class="card steps-card">
                 <span class="step-label">Langkah 1</span>
-                <h3>Ekspor dari ponsel</h3>
+                <h3>Ekspor dari ponsel 📱</h3>
                 <ol class="steps">
-                  <li>Buka <strong>Google Authenticator</strong> di HP.</li>
-                  <li>Ketuk menu <strong>⋮</strong> → <strong>Transfer accounts</strong>.</li>
-                  <li>Pilih <strong>Export accounts</strong>, lalu centang akun yang ingin dipindahkan.</li>
-                  <li>Google menampilkan satu atau beberapa QR. Jangan tutup layar tersebut.</li>
+                  <li>Buka <strong>Google Authenticator</strong> di HP kamu.</li>
+                  <li>Ketuk menu <strong>⋮</strong> → <strong>Transfer accounts</strong>, ya.</li>
+                  <li>Pilih <strong>Export accounts</strong>, lalu centang akun yang mau dipindah.</li>
+                  <li>Google nampilin satu atau beberapa QR. Jangan tutup layarnya, ya!</li>
                 </ol>
                 <div class="callout callout-info">
-                  QR ekspor bersifat rahasia dan bisa dipakai siapa pun yang
-                  memotretnya. Pastikan layar hanya terlihat olehmu dan hapus
-                  screenshot setelah selesai.
+                  QR ekspor itu rahasia, siapa pun yang memotretnya bisa pakai. Jangan
+                  sampai kelihatan orang lain, dan hapus screenshot setelah
+                  selesai, gan.
                 </div>
               </section>
 
               <section class="card method-card">
                 <span class="step-label">Langkah 2</span>
-                <h3>Pindai atau tempel QR</h3>
+                <h3>Pindai atau tempel QR 📷</h3>
 
                 <div class="method-tabs" role="tablist" aria-label="Metode impor">
                   <button class="method-tab is-active" type="button" role="tab" aria-selected="true" data-method="camera">Kamera</button>
@@ -246,19 +246,18 @@
                         <path d="M4 7h3l1.5-2h7L17 7h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1z"></path>
                         <circle cx="12" cy="13" r="3.5"></circle>
                       </svg>
-                      <span>Kamera nonaktif</span>
+                      <span>Kamera masih tidur…</span>
                     </div>
                     <div class="camera-corners" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
                   </div>
                   <div class="camera-controls">
-                    <button class="btn btn-primary btn-sm" id="cameraStartBtn" type="button">Mulai kamera</button>
-                    <button class="btn btn-ghost btn-sm" id="cameraStopBtn" type="button" disabled>Hentikan</button>
-                    <span class="status-text" id="cameraStatus">Kamera hanya aktif saat kamu menekannya.</span>
+                    <button class="btn btn-primary btn-sm" id="cameraStartBtn" type="button">Mulai kamera 📷</button>
+                    <button class="btn btn-ghost btn-sm" id="cameraStopBtn" type="button" disabled>Hentikan ⏹</button>
+                    <span class="status-text" id="cameraStatus">Kamera cuma nyala kalau kamu tekan, kok.</span>
                   </div>
                   <p class="field-hint">
-                    Arahkan kamera ke QR di layar HP. Di desktop tanpa kamera,
-                    gunakan tab <strong>Gambar</strong> untuk mengunggah
-                    screenshot QR.
+                    Arahkan kamera ke QR di layar HP. Di desktop tanpa kamera, yah…
+                    pakai tab <strong>Gambar</strong> buat unggah screenshot QR.
                   </p>
                 </div>
 
@@ -269,27 +268,26 @@
                       <path d="M7 9l5-5 5 5"></path>
                       <path d="M4 15v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4"></path>
                     </svg>
-                    <strong>Letakkan screenshot QR di sini</strong>
-                    <span>atau klik untuk memilih satu / beberapa gambar</span>
+                    <strong>Letakkan screenshot QR di sini 👇</strong>
+                    <span>atau klik buat milih satu / beberapa gambar</span>
                     <input id="qrFileInput" type="file" accept="image/*" multiple hidden />
                   </label>
                   <p class="status-text" id="uploadStatus">
-                    Format PNG, JPG, atau WebP. Beberapa QR ekspor bisa diunggah
-                    sekaligus.
+                    Format PNG, JPG, atau WebP. Bisa unggah beberapa QR sekaligus, gan.
                   </p>
                 </div>
 
                 <div class="method-panel hidden" data-method-panel="paste">
                   <label class="field-label" for="pasteInput">Tautan otpauth</label>
-                  <textarea class="text-area" id="pasteInput" rows="5" placeholder="Tempel otpauth:// atau otpauth-migration://offline?data=…&#10;Satu tautan per baris."></textarea>
+                  <textarea class="text-area" id="pasteInput" rows="5" placeholder="Tempel otpauth:// atau otpauth-migration://offline?data=…&#10;Satu tautan per baris, ya."></textarea>
                   <div class="form-actions compact">
-                    <button class="btn btn-primary btn-sm" id="pasteBtn" type="button">Proses tautan</button>
+                    <button class="btn btn-primary btn-sm" id="pasteBtn" type="button">Proses tautan →</button>
                     <span class="status-text" id="pasteStatus"></span>
                   </div>
                   <p class="field-hint">
                     Mendukung QR ekspor Google Authenticator
                     (<code>otpauth-migration://</code>) dan tautan TOTP/HOTP
-                    standar (<code>otpauth://</code>).
+                    standar (<code>otpauth://</code>). Tinggal tempel, gan.
                   </p>
                 </div>
 
@@ -311,7 +309,7 @@
                       <label class="field">
                         <span>Algoritma</span>
                         <select id="manualAlgorithm">
-                          <option value="SHA1" selected>SHA1 (umum)</option>
+                          <option value="SHA1" selected>SHA1 (paling umum)</option>
                           <option value="SHA256">SHA256</option>
                           <option value="SHA512">SHA512</option>
                         </select>
@@ -319,7 +317,7 @@
                       <label class="field">
                         <span>Digit</span>
                         <select id="manualDigits">
-                          <option value="6" selected>6 digit</option>
+                          <option value="6" selected>6 digit (standar)</option>
                           <option value="8">8 digit</option>
                         </select>
                       </label>
@@ -330,8 +328,8 @@
                       <label class="field">
                         <span>Tipe</span>
                         <select id="manualType">
-                          <option value="totp" selected>TOTP (berbasis waktu)</option>
-                          <option value="hotp">HOTP (berbasis counter)</option>
+                          <option value="totp" selected>TOTP (berdasarkan waktu)</option>
+                          <option value="hotp">HOTP (berdasarkan counter)</option>
                         </select>
                       </label>
                       <label class="field hidden" id="manualCounterWrap">
@@ -341,11 +339,11 @@
                     </div>
                     <div class="form-error hidden" id="manualError" role="alert"></div>
                     <div class="form-actions">
-                      <button class="btn btn-primary" id="manualSubmit" type="submit">Tambahkan akun</button>
+                      <button class="btn btn-primary" id="manualSubmit" type="submit">Tambahkan akun!</button>
                     </div>
                     <p class="field-hint">
-                      Secret biasanya diberikan situs sebagai kunci Base32.
-                      Spasi, tanda hubung, dan padding “=” diabaikan.
+                      Secret biasanya dikasih situs sebagai kunci Base32. Spasi, tanda
+                      hubung, dan padding “=” nggak dihitung, kok.
                     </p>
                   </form>
                 </div>
@@ -354,25 +352,25 @@
 
             <div class="batch-status hidden" id="batchStatus">
               <div class="batch-head">
-                <strong id="batchTitle">Progres pemindaian</strong>
-                <button class="btn btn-ghost btn-xs" id="resetScanBtn" type="button">Mulai ulang</button>
+                <strong id="batchTitle">Progres pemindaian (bip bip…)</strong>
+                <button class="btn btn-ghost btn-xs" id="resetScanBtn" type="button">Mulai ulang ↻</button>
               </div>
               <p id="batchText"></p>
               <div class="batch-dots" id="batchDots"></div>
             </div>
 
             <div class="warnings hidden" id="importWarnings">
-              <strong>Catatan impor</strong>
+              <strong>Catatan impor ⚠</strong>
               <ul id="importWarningsList"></ul>
             </div>
 
             <div class="card candidates hidden" id="candidateCard">
               <div class="panel-heading">
                 <div class="panel-title">
-                  <h2>Akun siap diimpor</h2>
+                  <h2>Akun siap diimpor ✨</h2>
                   <p id="candidateCount">0 akun dipilih</p>
                 </div>
-                <button class="btn btn-ghost btn-sm" id="candidateClearBtn" type="button">Bersihkan</button>
+                <button class="btn btn-ghost btn-sm" id="candidateClearBtn" type="button">Bersihkan 🧹</button>
               </div>
               <div class="table-wrap">
                 <table class="data-table candidate-table">
@@ -392,7 +390,7 @@
                 </table>
               </div>
               <div class="candidate-actions">
-                <span class="status-text warn hidden" id="candidateIncomplete">Beberapa QR ekspor belum dipindai.</span>
+                <span class="status-text warn hidden" id="candidateIncomplete">Masih ada QR ekspor yang belum dipindai, gan.</span>
                 <button class="btn btn-primary" id="candidateAddBtn" type="button" disabled>Tambahkan 0 akun</button>
               </div>
             </div>
@@ -401,59 +399,59 @@
           <section class="panel hidden" id="panelBackup" data-panel="backup">
             <div class="panel-heading">
               <div class="panel-title">
-                <h2>Cadangan</h2>
-                <p>Simpan salinan terenkripsi agar akun tidak hilang.</p>
+                <h2>Cadangan 💾</h2>
+                <p>Simpan salinan terenkripsi biar akun nggak hilang. Jangan sampai nyesel!</p>
               </div>
             </div>
 
             <div class="backup-grid">
               <section class="card">
-                <h3>Ekspor cadangan</h3>
+                <h3>Ekspor cadangan 📤</h3>
                 <p class="card-text">
                   File cadangan berisi brankas yang sudah dienkripsi. Kata sandi
-                  utama tetap diperlukan untuk membukanya.
+                  utama tetap diperlukan buat membukanya, gan.
                 </p>
                 <div class="meta-box">
                   <span>Status brankas</span>
-                  <strong id="exportMeta">Memuat…</strong>
+                  <strong id="exportMeta">Memuat… sabar…</strong>
                 </div>
-                <button class="btn btn-primary" id="exportBtn" type="button">Unduh cadangan terenkripsi</button>
+                <button class="btn btn-primary" id="exportBtn" type="button">Unduh cadangan terenkripsi 💾</button>
                 <p class="status-text" id="exportStatus"></p>
                 <div class="callout callout-info">
-                  Simpan file di tempat aman. File ini tidak bisa dibuka tanpa
-                  kata sandi utama yang berlaku saat cadangan dibuat.
+                  Simpan file di tempat aman, gan. Tanpa kata sandi utama yang dipakai
+                  waktu bikin cadangan, file ini nggak bisa dibuka.
                 </div>
               </section>
 
               <section class="card">
-                <h3>Pulihkan cadangan</h3>
+                <h3>Pulihkan cadangan 📥</h3>
                 <p class="card-text">
                   Pilih file JSON dari GembokGemas, lalu masukkan kata sandi yang
-                  dipakai saat cadangan dibuat.
+                  dipakai waktu file itu dibuat, gan.
                 </p>
                 <label class="file-pick" for="backupFile">
                   <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                     <path d="M14 2v6h6"></path>
                   </svg>
-                  <span id="backupFileName">Belum ada file dipilih</span>
+                  <span id="backupFileName">Belum ada file dipilih…</span>
                   <input id="backupFile" type="file" accept=".json,application/json" hidden />
                 </label>
                 <label class="field">
                   <span>Kata sandi cadangan</span>
-                  <input id="backupPassword" type="password" placeholder="Kata sandi saat file dibuat" autocomplete="off" />
+                  <input id="backupPassword" type="password" placeholder="Kata sandi waktu file dibuat" autocomplete="off" />
                 </label>
                 <div class="radio-group">
                   <label>
                     <input type="radio" name="restoreMode" value="merge" checked />
-                    <span><strong>Gabungkan</strong> — tambahkan akun yang belum ada</span>
+                    <span><strong>Gabungkan</strong> — tambah akun yang belum ada</span>
                   </label>
                   <label>
                     <input type="radio" name="restoreMode" value="replace" />
-                    <span><strong>Ganti brankas</strong> — hapus akun saat ini</span>
+                    <span><strong>Ganti brankas</strong> — hapus akun sekarang</span>
                   </label>
                 </div>
-                <button class="btn btn-primary" id="restoreBtn" type="button">Pulihkan cadangan</button>
+                <button class="btn btn-primary" id="restoreBtn" type="button">Pulihkan cadangan!</button>
                 <p class="status-text" id="restoreStatus"></p>
               </section>
             </div>
@@ -462,28 +460,28 @@
           <section class="panel hidden" id="panelSettings" data-panel="settings">
             <div class="panel-heading">
               <div class="panel-title">
-                <h2>Pengaturan</h2>
-                <p>Keamanan brankas dan preferensi sesi.</p>
+                <h2>Pengaturan ⚙</h2>
+                <p>Keamanan brankas dan preferensi sesi, gan.</p>
               </div>
             </div>
 
             <div class="settings-grid">
               <section class="card">
-                <h3>Keamanan</h3>
+                <h3>Keamanan 🔐</h3>
                 <div class="meta-box">
                   <span>Sesi brankas</span>
                   <strong>Terbuka sampai Chrome ditutup</strong>
                 </div>
                 <p class="field-hint">
-                  Kata sandi hanya diminta sekali per sesi. Brankas tetap terbuka
-                  saat kamu berpindah tab atau membuka popup. Sesi berakhir saat
-                  Chrome ditutup, brankas dikunci manual, atau direset.
+                  Kata sandi cuma diminta sekali per sesi. Brankas tetap terbuka
+                  saat kamu pindah tab atau buka popup. Sesi habis saat Chrome
+                  ditutup, brankas dikunci manual, atau direset.
                 </p>
-                <button class="btn btn-ghost" id="lockNowBtn" type="button">Kunci sekarang</button>
+                <button class="btn btn-ghost" id="lockNowBtn" type="button">Kunci sekarang 🔒</button>
               </section>
 
               <section class="card">
-                <h3>Ubah kata sandi utama</h3>
+                <h3>Ubah kata sandi utama 🔑</h3>
                 <form id="changePasswordForm" novalidate>
                   <label class="field">
                     <span>Kata sandi saat ini</span>
@@ -498,21 +496,21 @@
                     <input id="confirmPassword" type="password" autocomplete="new-password" minlength="8" required />
                   </label>
                   <div class="form-error hidden" id="changePasswordError" role="alert"></div>
-                  <button class="btn btn-primary" id="changePasswordBtn" type="submit">Ubah kata sandi</button>
+                  <button class="btn btn-primary" id="changePasswordBtn" type="submit">Ubah kata sandi!</button>
                 </form>
               </section>
 
               <section class="card danger-zone">
-                <h3>Reset brankas</h3>
+                <h3>Reset brankas ⚠</h3>
                 <p class="card-text">
                   Menghapus brankas dari perangkat ini beserta semua akun di
-                  dalamnya. Cadangan terenkripsi yang sudah diunduh tetap aman.
+                  dalamnya. Cadangan terenkripsi yang sudah diunduh tetap aman, kok.
                 </p>
                 <label class="field">
                   <span>Ketik <strong>RESET</strong> untuk mengonfirmasi</span>
                   <input id="resetInput" type="text" placeholder="RESET" autocomplete="off" spellcheck="false" />
                 </label>
-                <button class="btn btn-danger" id="resetBtn" type="button">Reset brankas</button>
+                <button class="btn btn-danger" id="resetBtn" type="button">Reset brankas ⚠</button>
               </section>
 
               <section class="card about-card">
@@ -522,15 +520,15 @@
                   terenkripsi. Edisi 199X. Versi 1.0.0.
                 </p>
                 <ul class="check-list">
-                  <li>Tidak ada akses jaringan dan tidak ada analytics.</li>
+                  <li>Tidak ada akses jaringan dan tidak ada analytics, gan.</li>
                   <li>Secret dienkripsi AES-256-GCM dengan PBKDF2-SHA256.</li>
                   <li>Impor resmi lewat QR <em>Export accounts</em> Google Authenticator.</li>
                   <li>Tidak berafiliasi dengan Google. Google Authenticator adalah merek Google LLC.</li>
                 </ul>
                 <div class="callout callout-warn">
-                  Google Authenticator tidak menyediakan API sinkronisasi
-                  langsung. Akun yang ditambahkan di HP setelah impor tidak
-                  otomatis muncul di sini; ekspor ulang QR untuk memindahkannya.
+                  Google Authenticator nggak nyediain API sinkronisasi langsung.
+                  Akun yang ditambah di HP setelah impor nggak otomatis muncul
+                  di sini; ekspor ulang QR buat mindahinnya.
                 </div>
               </section>
             </div>
@@ -539,14 +537,14 @@
       </div>
 
       <footer class="page-footer">
-        <span>GembokGemas 1.0 · 100% offline · Tidak berafiliasi dengan Google</span>
+        <span>GembokGemas 1.0 · 100% offline · Nggak berafiliasi dengan Google</span>
         <span class="page-footer-best">[ Best viewed in 800×600 ]</span>
       </footer>
     </div>
 
     <dialog class="dialog" id="editDialog">
-      <h2>Edit akun</h2>
-      <p class="dialog-sub">Perbarui label layanan atau nama akun.</p>
+      <h2>Edit akun ✏️</h2>
+      <p class="dialog-sub">Perbarui label layanan atau nama akun, gan.</p>
       <label class="field">
         <span>Layanan / penerbit</span>
         <input id="editIssuer" type="text" autocomplete="off" />
@@ -557,8 +555,8 @@
       </label>
       <div class="form-error hidden" id="editError" role="alert"></div>
       <div class="dialog-actions">
-        <button class="btn btn-ghost" id="editCancel" type="button">Batal</button>
-        <button class="btn btn-primary" id="editSave" type="button">Simpan</button>
+        <button class="btn btn-ghost" id="editCancel" type="button">Batal (urung)</button>
+        <button class="btn btn-primary" id="editSave" type="button">Simpan!</button>
       </div>
     </dialog>
 

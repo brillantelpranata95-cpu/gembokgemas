@@ -15,9 +15,9 @@ export function normalizeSecret(value) {
 
 export function base32Decode(value) {
   const clean = normalizeSecret(value);
-  if (!clean) throw new Error('Secret kosong.');
+  if (!clean) throw new Error('Secret masih kosong, gan.');
   if (/[^A-Z2-7]/.test(clean)) {
-    throw new Error('Secret Base32 mengandung karakter yang tidak valid.');
+    throw new Error('Secret Base32 ada karakter aneh, gan. Cek lagi.');
   }
   const output = [];
   let buffer = 0;
@@ -30,7 +30,7 @@ export function base32Decode(value) {
       output.push((buffer >>> bitsLeft) & 0xff);
     }
   }
-  if (!output.length) throw new Error('Secret Base32 terlalu pendek.');
+  if (!output.length) throw new Error('Secret Base32 terlalu pendek, ya.');
   return new Uint8Array(output);
 }
 
@@ -47,11 +47,11 @@ export async function generateHOTP(
   digits = 6
 ) {
   const hash = HASH_NAMES[algorithm];
-  if (!hash) throw new Error('Algoritma OTP tidak didukung.');
+  if (!hash) throw new Error('Algoritma OTP nggak didukung, gan.');
   if (!Number.isInteger(digits) || digits < 6 || digits > 8) {
-    throw new Error('Jumlah digit tidak didukung.');
+    throw new Error('Jumlah digit nggak didukung, gan.');
   }
-  if (counter < 0) throw new Error('Counter tidak valid.');
+  if (counter < 0) throw new Error('Counter nggak valid, gan.');
 
   const key = await crypto.subtle.importKey(
     'raw',

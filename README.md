@@ -55,6 +55,9 @@ Detail yang dipakai:
   ala kotak dialog lama. Tidak ada elemen scrapbook atau stiker miring.
 - **Tipografi sistem:** Trebuchet MS untuk teks, Arial Black untuk judul, dan Lucida
   Console untuk label kecil serta kode. Tidak ada web font atau permintaan jaringan.
+- **Nada bicara:** semua label, tombol, dan pesan pakai gaya ngobrol jadul yang
+  lucu (“bip bip, beres!”, “sabar, ya…”). Kata kerja tombol tetap jelas, jadi
+  fungsinya nggak berubah.
 - **Easter egg teks:** “Est. 199X”, “Best viewed in 800×600”, dan “100% OFFLINE” di
   header, footer, serta empty state.
 

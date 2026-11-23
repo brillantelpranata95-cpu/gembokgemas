@@ -35,9 +35,9 @@ const METHODS = new Set(['camera', 'upload', 'paste', 'manual']);
 const MAX_BATCH_SIZE = 100;
 const MAX_BACKUP_BYTES = 8 * 1024 * 1024;
 const DEFAULT_CAMERA_STATUS =
-  'Kamera hanya aktif saat kamu menekannya.';
+  'Kamera cuma nyala kalau kamu tekan, kok.';
 const DEFAULT_UPLOAD_STATUS =
-  'Format PNG, JPG, atau WebP. Beberapa QR ekspor bisa diunggah sekaligus.';
+  'Format PNG, JPG, atau WebP. Bisa unggah beberapa QR sekaligus, gan.';
 
 const els = {
   gateWrap: $('gateWrap'),
@@ -167,7 +167,7 @@ function makeImportState() {
 function setBadge(open) {
   els.vaultBadge.classList.toggle('is-open', open);
   els.vaultBadge.classList.toggle('is-locked', !open);
-  els.vaultBadgeText.textContent = open ? 'Terbuka' : 'Terkunci';
+  els.vaultBadgeText.textContent = open ? 'Terbuka!' : 'Terkunci';
 }
 
 function resetReveals() {
@@ -176,7 +176,7 @@ function resetReveals() {
     if (input) input.type = 'password';
     button.classList.remove('is-visible');
     button.setAttribute('aria-pressed', 'false');
-    button.setAttribute('aria-label', 'Tampilkan kata sandi');
+    button.setAttribute('aria-label', 'Intip kata sandi');
   }
 }
 
@@ -211,7 +211,7 @@ function clearSensitiveForms() {
   hideFormError(els.manualError);
   els.pasteInput.value = '';
   els.backupFile.value = '';
-  els.backupFileName.textContent = 'Belum ada file dipilih';
+  els.backupFileName.textContent = 'Belum ada file dipilih…';
   els.backupPassword.value = '';
   hideFormError(els.changePasswordError);
   els.changePasswordForm.reset();
@@ -255,9 +255,9 @@ function lockUi(mode, message = '') {
   els.accountsTable.classList.add('hidden');
   els.accountsEmpty.classList.remove('hidden');
   els.accountsEmptyActions.classList.remove('hidden');
-  els.accountsEmptyTitle.textContent = 'Belum ada akun';
+  els.accountsEmptyTitle.textContent = 'Belum ada akun (sepi…)';
   els.accountsEmptyText.textContent =
-    'Impor dari Google Authenticator atau tambahkan akun secara manual untuk mulai membuat kode.';
+    'Impor dari Google Authenticator atau tambah akun manual buat mulai bikin kode.';
   if (mode === 'setup') {
     setTimeout(() => els.gateSetupPassword.focus(), 60);
   } else {
@@ -325,7 +325,7 @@ async function enterWorkspace(key, accounts) {
       state.accounts = await loadAccounts(key);
     } catch (error) {
       console.error('Gagal memuat akun:', error);
-      showGateUnlock('Sesi tidak valid. Buka kunci lagi.');
+      showGateUnlock('Sesi nggak valid. Buka kunci lagi, ya.');
       return;
     }
   }
@@ -363,7 +363,7 @@ async function refreshBackupMeta() {
     }
     const updated = meta.updatedAt
       ? formatDateTime(meta.updatedAt)
-      : 'baru dibuat';
+      : 'baru dibuat, gan';
     els.exportMeta.textContent = `${state.accounts.length} akun · ${updated}`;
   } catch {
     els.exportMeta.textContent = '—';
@@ -376,7 +376,7 @@ function handleSessionError(error) {
       error?.message
     )
   ) {
-    showGateUnlock('Sesi berakhir. Buka kunci lagi.');
+    showGateUnlock('Sesi habis, gan. Buka kunci lagi, ya.');
     return true;
   }
   return false;
@@ -386,7 +386,7 @@ async function checkSession() {
   if (!state.unlocked) return;
   try {
     const active = await isSessionActive();
-    if (!active) showGateUnlock('Sesi berakhir. Buka kunci lagi.');
+    if (!active) showGateUnlock('Sesi habis, gan. Buka kunci lagi, ya.');
   } catch (error) {
     console.error('Gagal memeriksa sesi:', error);
   }
@@ -398,23 +398,23 @@ async function handleGateSetup(event) {
   const password = els.gateSetupPassword.value;
   const confirmation = els.gateSetupConfirm.value;
   if (password.length < 8) {
-    showFormError(els.gateSetupError, 'Kata sandi minimal 8 karakter.');
+    showFormError(els.gateSetupError, 'Kata sandi minimal 8 karakter. Jangan yang pendek-pendek, ya!');
     return;
   }
   if (password !== confirmation) {
     showFormError(
       els.gateSetupError,
-      'Kata sandi dan konfirmasi tidak sama.'
+      'Kata sandi dan konfirmasinya beda. Ketik ulang, gan!'
     );
     return;
   }
-  setBusy(els.gateSetupSubmit, true, 'Membuat brankas…');
+  setBusy(els.gateSetupSubmit, true, 'Lagi bikin brankas… sabar, ya…');
   try {
     const key = await createVault(password);
     els.gateSetupForm.reset();
     resetReveals();
     await enterWorkspace(key, []);
-    showToast(els.toast, 'Brankas dibuat. Tambahkan akun pertamamu.');
+    showToast(els.toast, 'Brankas jadi! Sekarang tambah akun pertamamu, gan.');
   } catch (error) {
     if (error.message === 'VAULT_EXISTS') {
       showGateUnlock();
@@ -431,16 +431,16 @@ async function handleGateUnlock(event) {
   hideFormError(els.gateUnlockError);
   const password = els.gateUnlockPassword.value;
   if (!password) {
-    showFormError(els.gateUnlockError, 'Masukkan kata sandi.');
+    showFormError(els.gateUnlockError, 'Isi kata sandinya dulu, gan.');
     return;
   }
-  setBusy(els.gateUnlockSubmit, true, 'Membuka kunci…');
+  setBusy(els.gateUnlockSubmit, true, 'Lagi buka kunci… bip…');
   try {
     const result = await unlockVault(password);
     els.gateUnlockForm.reset();
     resetReveals();
     await enterWorkspace(result.key, result.accounts);
-    showToast(els.toast, 'Brankas dibuka.');
+    showToast(els.toast, 'Brankas terbuka. Selamat datang kembali, gan!');
   } catch (error) {
     if (error.message === 'NO_VAULT') {
       showGateSetup();
@@ -454,7 +454,7 @@ async function handleGateUnlock(event) {
 
 async function handleForgot() {
   const confirmed = window.confirm(
-    'Kata sandi tidak bisa dipulihkan. Reset akan menghapus brankas ini beserta semua akun di dalamnya.\n\nJika punya cadangan terenkripsi, kamu bisa memulihkannya setelah membuat brankas baru.\n\nReset sekarang?'
+    'Kata sandi nggak bisa dipulihkan, bro. Reset bakal hapus brankas ini beserta semua akun di dalamnya.\n\nPunya cadangan terenkripsi? Bisa dipulihkan setelah bikin brankas baru, kok.\n\nYakin reset sekarang?'
   );
   if (!confirmed) return;
   try {
@@ -462,7 +462,7 @@ async function handleForgot() {
     state.activeTab = 'accounts';
     updateUrl();
     showGateSetup();
-    showToast(els.toast, 'Brankas direset. Buat kata sandi baru.');
+    showToast(els.toast, 'Brankas direset. Bikin kata sandi baru, ya!');
   } catch (error) {
     showToast(els.toast, errorMessage(error), 'error');
   }
@@ -471,7 +471,7 @@ async function handleForgot() {
 async function handleLock() {
   await lockVault();
   showGateUnlock();
-  showToast(els.toast, 'Brankas dikunci.');
+  showToast(els.toast, 'Brankas terkunci. Aman…');
 }
 function sortAccounts(accounts) {
   return [...accounts].sort((left, right) =>
@@ -525,19 +525,19 @@ function renderAccountsTable() {
 
   els.accountSearch.parentElement.classList.toggle('hidden', !hasAccounts);
   els.accountsCountText.textContent = hasAccounts
-    ? `${state.accounts.length} akun tersimpan terenkripsi`
-    : 'Belum ada akun';
+    ? `${state.accounts.length} akun tersimpan aman`
+    : 'Belum ada akun (sepi…)';
   els.accountsTable.classList.toggle('hidden', filtered.length === 0);
   els.accountsEmpty.classList.toggle('hidden', filtered.length > 0);
 
   if (filtered.length === 0) {
     const searching = hasAccounts && Boolean(term);
     els.accountsEmptyTitle.textContent = searching
-      ? 'Tidak ada hasil'
-      : 'Belum ada akun';
+      ? 'Nggak ada hasil'
+      : 'Belum ada akun (sepi…)';
     els.accountsEmptyText.textContent = searching
-      ? `Tidak ada akun yang cocok dengan “${term}”. Coba kata kunci lain.`
-      : 'Impor dari Google Authenticator atau tambahkan akun secara manual untuk mulai membuat kode.';
+      ? `Nggak ada akun yang cocok dengan “${term}”. Coba kata kunci lain, gan.`
+      : 'Impor dari Google Authenticator atau tambah akun manual buat mulai bikin kode.';
     els.accountsEmptyActions.classList.toggle('hidden', searching);
   }
 
@@ -584,11 +584,11 @@ function renderAccountsTable() {
       .filter(Boolean)
       .join(' — ');
     actions.append(
-      actionButton('edit', account.id, `Edit ${displayName}`, EDIT_ICON),
+      actionButton('edit', account.id, `Edit ${displayName} (ubah label)`, EDIT_ICON),
       actionButton(
         'delete',
         account.id,
-        `Hapus ${displayName}`,
+        `Hapus ${displayName} (hati-hati!)`,
         DELETE_ICON,
         true
       )
@@ -616,15 +616,15 @@ async function handleEditSave() {
   const issuer = els.editIssuer.value.trim();
   const name = els.editName.value.trim();
   if (!issuer && !name) {
-    showFormError(els.editError, 'Isi nama layanan atau nama akun.');
+    showFormError(els.editError, 'Isi nama layanan atau nama akun, gan.');
     return;
   }
-  setBusy(els.editSave, true, 'Menyimpan…');
+  setBusy(els.editSave, true, 'Lagi nyimpan… sabar…');
   try {
     await updateAccount(state.editingId, { issuer, name });
     els.editDialog.close();
     await refreshAccounts();
-    showToast(els.toast, 'Akun diperbarui.');
+    showToast(els.toast, 'Akun diperbarui. Mantap!');
   } catch (error) {
     if (handleSessionError(error)) {
       els.editDialog.close();
@@ -652,15 +652,15 @@ async function handleAccountsClick(event) {
   if (button.dataset.action === 'delete') {
     const displayName =
       [account.issuer, account.name].filter(Boolean).join(' — ') ||
-      'akun ini';
+      'akun tanpa nama';
     const confirmed = window.confirm(
-      `Hapus akun “${displayName}”?\n\nPastikan kamu masih punya akses ke layanan tersebut. Tindakan ini tidak bisa dibatalkan.`
+      `Hapus akun “${displayName}”?\n\nPastikan kamu masih punya akses ke layanan tersebut, ya. Tindakan ini nggak bisa dibatalkan!`
     );
     if (!confirmed) return;
     try {
       await deleteAccount(account.id);
       await refreshAccounts();
-      showToast(els.toast, 'Akun dihapus.');
+      showToast(els.toast, 'Akun dihapus. Beres!');
     } catch (error) {
       if (handleSessionError(error)) return;
       showToast(els.toast, errorMessage(error), 'error');
@@ -757,7 +757,7 @@ function ingestParsed(result) {
     result.batchIndex >= result.batchSize
   ) {
     addWarnings([
-      'QR batch memiliki metadata yang tidak valid. Akun dari QR ini dimuat sebagai impor tunggal.'
+      'Metadata QR batch nggak valid. Akun dari QR ini dimuat sebagai impor tunggal, gan.'
     ]);
     const fresh = takeUniqueAccounts(result.accounts);
     state.importState.standalone.push(...fresh);
@@ -775,7 +775,7 @@ function ingestParsed(result) {
     (batch.batchId !== result.batchId || batch.batchSize !== result.batchSize)
   ) {
     addWarnings([
-      'Batch QR baru terdeteksi. Progres pemindaian batch sebelumnya direset.'
+      'Batch QR baru terdeteksi. Progres batch sebelumnya direset, ya.'
     ]);
     batch = null;
   }
@@ -823,7 +823,7 @@ async function handleDecodedText(text, source = 'paste') {
   if (!results.length) {
     setStatus(
       statusElement,
-      errors[0] || 'QR tidak berisi tautan otpauth yang didukung.',
+      errors[0] || 'QR ini nggak berisi tautan otpauth yang didukung, gan.',
       'error'
     );
     return { ok: false, added: 0, complete: false, batch: null };
@@ -847,15 +847,15 @@ async function handleDecodedText(text, source = 'paste') {
         els.cameraStatus,
         `QR ${done} dari ${batch.batchSize} terbaca${
           added ? ` · ${added} akun baru` : ''
-        }. Arahkan kamera ke QR berikutnya.`,
+        }. Arahkan kamera ke QR berikutnya, gan.`,
         'success'
       );
     } else {
       setStatus(
         els.cameraStatus,
         added
-          ? `QR terbaca · ${candidateTotal} akun siap diimpor.`
-          : 'QR ini sudah pernah dipindai.',
+          ? `QR terbaca! ${candidateTotal} akun siap diimpor.`
+          : 'QR ini udah pernah dipindai, kok.',
         added ? 'success' : ''
       );
       stopCamera(false);
@@ -863,14 +863,14 @@ async function handleDecodedText(text, source = 'paste') {
   } else {
     let message;
     if (added) {
-      message = `${added} akun ditambahkan ke daftar impor.`;
+      message = `${added} akun masuk daftar impor. Asyik!`;
     } else if (batch && !complete) {
-      message = `QR ${done} dari ${batch.batchSize} sudah terbaca. Pindai QR berikutnya.`;
+      message = `QR ${done} dari ${batch.batchSize} sudah terbaca. Pindai yang berikutnya, ya.`;
     } else {
-      message = 'Akun dari QR ini sudah ada di daftar.';
+      message = 'Akun dari QR ini udah ada di daftar.';
     }
     if (batch && !complete && added) {
-      message += ` Masih ada ${batch.batchSize - done} QR lagi.`;
+      message += ` Masih ada ${batch.batchSize - done} QR lagi, gan.`;
     }
     setStatus(statusElement, message, added ? 'success' : '');
   }
@@ -940,11 +940,11 @@ function renderBatchStatus() {
   const complete = done >= batch.batchSize;
   const accountCount = allImportAccounts().length;
   els.batchTitle.textContent = complete
-    ? 'Semua QR sudah dipindai'
-    : 'Progres pemindaian';
+    ? 'Semua QR sudah dipindai! Beres!'
+    : 'Progres pemindaian (bip bip…)';
   els.batchText.textContent = complete
-    ? `${done} dari ${batch.batchSize} QR terbaca · ${accountCount} akun ditemukan. Periksa daftar di bawah sebelum menambahkan.`
-    : `${done} dari ${batch.batchSize} QR ekspor sudah dipindai · ${accountCount} akun ditemukan. Pindai QR berikutnya dari layar Google Authenticator.`;
+    ? `${done} dari ${batch.batchSize} QR terbaca · ${accountCount} akun ketemu. Cek daftar di bawah sebelum nambahin, ya.`
+    : `${done} dari ${batch.batchSize} QR ekspor sudah dipindai · ${accountCount} akun ketemu. Pindai QR berikutnya dari layar Google Authenticator, gan.`;
 
   const fragment = document.createDocumentFragment();
   for (let index = 0; index < batch.batchSize; index += 1) {
@@ -991,8 +991,8 @@ function renderCandidates() {
   const available = availableCandidates();
   const duplicates = list.length - available.length;
   els.candidateCount.textContent = duplicates
-    ? `${selected.length} dari ${list.length} akun dipilih · ${duplicates} sudah ada`
-    : `${selected.length} dari ${list.length} akun dipilih`;
+    ? `${selected.length} dari ${list.length} akun dipilih · ${duplicates} udah ada`
+    : `${selected.length} dari ${list.length} akun dipilih, gan`;
 
   const batch = state.importState.batch;
   const incomplete = batch && !isBatchComplete(batch);
@@ -1000,7 +1000,7 @@ function renderCandidates() {
   if (incomplete) {
     els.candidateIncomplete.textContent = `Masih ada ${
       batch.batchSize - batchDoneCount(batch)
-    } QR batch yang belum dipindai.`;
+    } QR batch yang belum dipindai, gan.`;
   }
 
   const fragment = document.createDocumentFragment();
@@ -1016,7 +1016,7 @@ function renderCandidates() {
       !duplicate && state.selection.get(fingerprint) === true;
     const displayName =
       [account.issuer, account.name].filter(Boolean).join(' — ') || 'akun';
-    checkbox.setAttribute('aria-label', `Pilih ${displayName}`);
+    checkbox.setAttribute('aria-label', `Pilih ${displayName} buat diimpor`);
     checkCell.appendChild(checkbox);
 
     const serviceCell = document.createElement('td');
@@ -1051,7 +1051,7 @@ function renderCandidates() {
     const statusCell = document.createElement('td');
     const statusPill = document.createElement('span');
     statusPill.className = `status-pill${duplicate ? ' is-duplicate' : ''}`;
-    statusPill.textContent = duplicate ? 'Sudah ada' : 'Siap';
+    statusPill.textContent = duplicate ? 'Sudah ada' : 'Siap ✨';
     statusCell.appendChild(statusPill);
 
     row.append(
@@ -1072,7 +1072,7 @@ function renderCandidates() {
   els.candidateSelectAll.indeterminate =
     selected.length > 0 && selected.length < available.length;
   els.candidateAddBtn.disabled = selected.length === 0;
-  els.candidateAddBtn.textContent = `Tambahkan ${selected.length} akun`;
+  els.candidateAddBtn.textContent = `Tambahkan ${selected.length} akun ✨`;
 }
 
 function handleCandidateToggle(event) {
@@ -1086,7 +1086,7 @@ function handleCandidateToggle(event) {
   els.candidateSelectAll.indeterminate =
     selected.length > 0 && selected.length < available.length;
   els.candidateAddBtn.disabled = selected.length === 0;
-  els.candidateAddBtn.textContent = `Tambahkan ${selected.length} akun`;
+  els.candidateAddBtn.textContent = `Tambahkan ${selected.length} akun ✨`;
   els.candidateCount.textContent = `${selected.length} dari ${state.candidateList.length} akun dipilih${
     state.candidateList.length - available.length
       ? ` · ${state.candidateList.length - available.length} sudah ada`
@@ -1105,7 +1105,7 @@ function handleCandidateSelectAll() {
   renderCandidates();
 }
 
-function clearImportState(message = 'Daftar impor dibersihkan.') {
+function clearImportState(message = 'Daftar impor dibersihkan. Beres!') {
   stopCamera();
   resetImportState();
   refreshImportUi();
@@ -1116,26 +1116,26 @@ function clearImportState(message = 'Daftar impor dibersihkan.') {
 }
 
 function handleResetScan() {
-  clearImportState('Pemindaian direset.');
+  clearImportState('Pemindaian direset. Mulai lagi dari awal, ya.');
 }
 
 async function handleCandidateAdd() {
   const chosen = selectedCandidates();
   if (!chosen.length) return;
   if (!state.unlocked) {
-    showGateUnlock('Sesi berakhir. Buka kunci lagi.');
+    showGateUnlock('Sesi habis, gan. Buka kunci lagi, ya.');
     return;
   }
 
   els.candidateAddBtn.disabled = true;
   const previousLabel = els.candidateAddBtn.textContent;
-  els.candidateAddBtn.textContent = 'Menambahkan…';
+  els.candidateAddBtn.textContent = 'Lagi nambahin… sabar…';
   try {
     const result = await addAccounts(chosen.map((candidate) => candidate.account));
     await refreshAccounts();
     resetImportState();
     refreshImportUi();
-    const parts = [`${result.added} akun ditambahkan`];
+    const parts = [`${result.added} akun berhasil ditambahkan`];
     if (result.skipped) parts.push(`${result.skipped} duplikat dilewati`);
     showToast(els.toast, `${parts.join(', ')}.`, 'success');
   } catch (error) {
@@ -1156,17 +1156,17 @@ function cameraErrorMessage(error) {
   switch (error?.name) {
     case 'NotAllowedError':
     case 'SecurityError':
-      return 'Akses kamera ditolak. Izinkan kamera di pengaturan situs ekstensi ini, atau gunakan tab Gambar.';
+      return 'Akses kamera ditolak, gan. Izinkan kamera di pengaturan situs ekstensi ini, atau pakai tab Gambar.';
     case 'NotFoundError':
     case 'DevicesNotFoundError':
-      return 'Tidak ada kamera yang terdeteksi. Gunakan tab Gambar untuk mengunggah screenshot QR.';
+      return 'Kamera nggak terdeteksi. Pakai tab Gambar buat unggah screenshot QR, ya.';
     case 'NotReadableError':
     case 'TrackStartError':
-      return 'Kamera sedang dipakai aplikasi lain atau tidak bisa dibuka. Tutup aplikasi tersebut lalu coba lagi.';
+      return 'Kamera lagi dipakai aplikasi lain atau nggak bisa dibuka. Tutup aplikasinya lalu coba lagi, gan.';
     case 'OverconstrainedError':
-      return 'Kamera tidak mendukung mode yang diminta. Coba lagi atau gunakan tab Gambar.';
+      return 'Kamera nggak mendukung mode yang diminta. Coba lagi atau pakai tab Gambar, gan.';
     default:
-      return `Kamera tidak bisa dimulai${error?.message ? `: ${error.message}` : '.'}`;
+      return `Kamera nggak bisa dimulai${error?.message ? `: ${error.message}` : '.'}`;
   }
 }
 
@@ -1181,9 +1181,9 @@ function ensureQrDecoder() {
       script.async = true;
       script.onload = () => {
         if (window.jsQR) resolve();
-        else reject(new Error('QR decoder tidak termuat.'));
+        else reject(new Error('QR decoder nggak termuat, gan.'));
       };
-      script.onerror = () => reject(new Error('QR decoder tidak termuat.'));
+      script.onerror = () => reject(new Error('QR decoder nggak termuat, gan.'));
       document.head.appendChild(script);
     }).catch((error) => {
       qrDecoderPromise = null;
@@ -1198,7 +1198,7 @@ async function startCamera() {
   if (!navigator.mediaDevices?.getUserMedia) {
     setStatus(
       els.cameraStatus,
-      'Kamera tidak tersedia di lingkungan ini. Gunakan tab Gambar untuk mengunggah screenshot QR.',
+      'Kamera nggak tersedia di lingkungan ini. Pakai tab Gambar buat unggah screenshot QR, ya.',
       'error'
     );
     return;
@@ -1206,13 +1206,13 @@ async function startCamera() {
   try {
     await ensureQrDecoder();
   } catch {
-    setStatus(els.cameraStatus, 'Decoder QR tidak termuat. Muat ulang halaman.', 'error');
+    setStatus(els.cameraStatus, 'Decoder QR nggak termuat. Muat ulang halaman, ya.', 'error');
     return;
   }
 
   stopCamera(false);
   els.cameraStartBtn.disabled = true;
-  setStatus(els.cameraStatus, 'Meminta akses kamera…');
+  setStatus(els.cameraStatus, 'Lagi minta akses kamera… izinin, ya…');
   try {
     const stream = await navigator.mediaDevices.getUserMedia({
       audio: false,
@@ -1236,7 +1236,7 @@ async function startCamera() {
     state.lastScanAt = 0;
     setStatus(
       els.cameraStatus,
-      'Kamera aktif. Arahkan ke QR ekspor Google Authenticator.',
+      'Kamera nyala! Arahkan ke QR ekspor Google Authenticator, gan.',
       'success'
     );
     state.scanFrame = requestAnimationFrame(scanTick);
@@ -1333,7 +1333,7 @@ function loadImageElement(file) {
     };
     image.onerror = () => {
       URL.revokeObjectURL(url);
-      reject(new Error('Gambar tidak bisa dibuka.'));
+      reject(new Error('Gambar nggak bisa dibuka, gan.'));
     };
     image.src = url;
   });
@@ -1419,7 +1419,7 @@ async function handleQrFiles(fileList) {
       (file.type.startsWith('image/') || /\.(png|jpe?g|webp|gif|bmp)$/i.test(file.name))
   );
   if (!picked.length) {
-    setStatus(els.uploadStatus, 'Pilih file gambar terlebih dahulu.', 'error');
+    setStatus(els.uploadStatus, 'Pilih file gambar dulu, ya.', 'error');
     return;
   }
   try {
@@ -1427,7 +1427,7 @@ async function handleQrFiles(fileList) {
   } catch {
     setStatus(
       els.uploadStatus,
-      'Decoder QR tidak termuat. Muat ulang halaman.',
+      'Decoder QR nggak termuat. Muat ulang halaman, ya.',
       'error'
     );
     return;
@@ -1444,7 +1444,7 @@ async function handleQrFiles(fileList) {
     for (let index = 0; index < files.length; index += 1) {
       setStatus(
         els.uploadStatus,
-        `Membaca gambar ${index + 1} dari ${files.length}…`
+        `Lagi baca gambar ${index + 1} dari ${files.length}… sabar…`
       );
       try {
         const text = await decodeQrFile(files[index]);
@@ -1469,9 +1469,9 @@ async function handleQrFiles(fileList) {
   const incomplete = batch && !isBatchComplete(batch);
   let message;
   if (!decoded) {
-    message = `Tidak ada QR yang bisa dibaca dari ${files.length} gambar. Coba screenshot yang lebih jelas atau tempel tautannya di tab Tempel.`;
+    message = `Nggak ada QR yang bisa dibaca dari ${files.length} gambar. Coba screenshot lebih jelas, atau tempel tautannya di tab Tempel, gan.`;
   } else {
-    message = `${decoded} dari ${files.length} gambar terbaca · ${added} akun ditambahkan ke daftar.`;
+    message = `${decoded} dari ${files.length} gambar terbaca · ${added} akun masuk daftar. Asyik!`;
     if (failed.length) {
       message += ` Gagal dibaca: ${failed.slice(0, 3).join(', ')}${
         failed.length > 3 ? ', …' : ''
@@ -1480,10 +1480,10 @@ async function handleQrFiles(fileList) {
     if (incomplete) {
       message += ` Masih ada ${
         batch.batchSize - batchDoneCount(batch)
-      } QR batch yang belum dipindai.`;
+      } QR batch yang belum dipindai, gan.`;
     }
     if (picked.length > files.length) {
-      message += ` Hanya ${limit} file pertama yang diproses.`;
+      message += ` Hanya ${limit} file pertama yang diproses, gan.`;
     }
   }
   setStatus(
@@ -1498,7 +1498,7 @@ function handleQrFileInput() {
   if (files?.length) {
     handleQrFiles(files).catch((error) => {
       console.error('Impor gambar gagal:', error);
-      setStatus(els.uploadStatus, 'Gagal memproses gambar.', 'error');
+      setStatus(els.uploadStatus, 'Gagal memproses gambar. Coba lagi, ya.', 'error');
     });
   }
 }
@@ -1523,7 +1523,7 @@ function bindDropZone() {
     if (event.dataTransfer?.files?.length) {
       handleQrFiles(event.dataTransfer.files).catch((error) => {
         console.error('Impor gambar gagal:', error);
-        setStatus(els.uploadStatus, 'Gagal memproses gambar.', 'error');
+        setStatus(els.uploadStatus, 'Gagal memproses gambar. Coba lagi, ya.', 'error');
       });
     }
   });
@@ -1538,7 +1538,7 @@ async function handlePaste() {
   if (!text) {
     setStatus(
       els.pasteStatus,
-      'Tempel minimal satu tautan otpauth atau otpauth-migration.',
+      'Tempel minimal satu tautan otpauth atau otpauth-migration, gan.',
       'error'
     );
     return;
@@ -1565,16 +1565,16 @@ async function handleManualSubmit(event) {
   const name = els.manualName.value.trim();
   const secret = els.manualSecret.value.trim();
   if (!issuer && !name) {
-    showFormError(els.manualError, 'Isi nama layanan atau nama akun.');
+    showFormError(els.manualError, 'Isi nama layanan atau nama akun, gan.');
     return;
   }
   if (!secret) {
-    showFormError(els.manualError, 'Masukkan secret Base32 dari layanan.');
+    showFormError(els.manualError, 'Masukkan secret Base32 dari layanan, gan.');
     return;
   }
   const period = Number(els.manualPeriod.value || 30);
   if (!Number.isInteger(period) || period < 1 || period > 3600) {
-    showFormError(els.manualError, 'Periode harus antara 1 dan 3600 detik.');
+    showFormError(els.manualError, 'Periode harus antara 1 dan 3600 detik, ya.');
     return;
   }
 
@@ -1603,23 +1603,23 @@ async function handleManualSubmit(event) {
   ) {
     showFormError(
       els.manualError,
-      'Akun dengan secret ini sudah ada di brankas.'
+      'Akun dengan secret ini udah ada di brankas, gan.'
     );
     return;
   }
 
-  setBusy(els.manualSubmit, true, 'Menambahkan…');
+  setBusy(els.manualSubmit, true, 'Lagi nambahin… sabar…');
   try {
     const result = await addAccounts([account]);
     await refreshAccounts();
     els.manualForm.reset();
     updateManualType();
     if (result.added) {
-      showToast(els.toast, 'Akun ditambahkan.');
+      showToast(els.toast, 'Akun ditambahkan! Mantap!');
     } else {
       showFormError(
         els.manualError,
-        'Akun dengan secret ini sudah ada di brankas.'
+        'Akun dengan secret ini udah ada di brankas, gan.'
       );
     }
   } catch (error) {
@@ -1635,7 +1635,7 @@ async function handleManualSubmit(event) {
 /* ------------------------------------------------------------------ */
 
 function formatFileSize(bytes) {
-  if (!Number.isFinite(bytes) || bytes < 0) return 'ukuran tidak diketahui';
+  if (!Number.isFinite(bytes) || bytes < 0) return 'ukuran nggak diketahui';
   if (bytes < 1024) return `${bytes} B`;
   const kb = bytes / 1024;
   if (kb < 1024) return `${kb.toFixed(1)} KB`;
@@ -1645,13 +1645,13 @@ function formatFileSize(bytes) {
 async function handleExport() {
   if (!state.unlocked) return;
   setStatus(els.exportStatus, '');
-  setBusy(els.exportBtn, true, 'Menyiapkan cadangan…');
+  setBusy(els.exportBtn, true, 'Lagi siapin cadangan… sabar…');
   try {
     const text = await exportBackup();
     const filename = `gembokgemas-backup-${formatDateForFile()}.json`;
     downloadText(filename, text);
-    setStatus(els.exportStatus, `Cadangan terunduh: ${filename}`, 'success');
-    showToast(els.toast, 'Cadangan terenkripsi diunduh.');
+    setStatus(els.exportStatus, `Cadangan terunduh: ${filename} — simpan baik-baik, ya!`, 'success');
+    showToast(els.toast, 'Cadangan terenkripsi diunduh. Jangan lupa disimpan, gan!');
     await refreshBackupMeta();
   } catch (error) {
     if (handleSessionError(error)) return;
@@ -1665,14 +1665,14 @@ function handleBackupFileChange() {
   const file = els.backupFile.files?.[0];
   setStatus(els.restoreStatus, '');
   if (!file) {
-    els.backupFileName.textContent = 'Belum ada file dipilih';
+    els.backupFileName.textContent = 'Belum ada file dipilih…';
     return;
   }
   els.backupFileName.textContent = `${file.name} · ${formatFileSize(file.size)}`;
   if (file.size > MAX_BACKUP_BYTES) {
     setStatus(
       els.restoreStatus,
-      'File melebihi batas 8 MB dan tidak akan diproses.',
+      'File kegedean (lebih dari 8 MB) dan nggak akan diproses, gan.',
       'error'
     );
   }
@@ -1681,13 +1681,13 @@ function handleBackupFileChange() {
 async function handleRestore() {
   const file = els.backupFile.files?.[0];
   if (!file) {
-    setStatus(els.restoreStatus, 'Pilih file cadangan terlebih dahulu.', 'error');
+    setStatus(els.restoreStatus, 'Pilih file cadangan dulu, ya.', 'error');
     return;
   }
   if (file.size > MAX_BACKUP_BYTES) {
     setStatus(
       els.restoreStatus,
-      'File melebihi batas 8 MB dan tidak akan diproses.',
+      'File kegedean (lebih dari 8 MB) dan nggak akan diproses, gan.',
       'error'
     );
     return;
@@ -1696,7 +1696,7 @@ async function handleRestore() {
   if (!password) {
     setStatus(
       els.restoreStatus,
-      'Masukkan kata sandi yang dipakai saat cadangan dibuat.',
+      'Masukkan kata sandi yang dipakai waktu cadangan dibuat, gan.',
       'error'
     );
     return;
@@ -1706,13 +1706,13 @@ async function handleRestore() {
     'merge';
   if (mode === 'replace') {
     const confirmed = window.confirm(
-      'Ganti brankas saat ini?\n\nSemua akun di brankas ini akan dihapus dan diganti dengan isi file cadangan. Kata sandi utama akan menjadi kata sandi file cadangan tersebut.\n\nLanjutkan?'
+      'Ganti brankas saat ini, gan?\n\nSemua akun di brankas ini bakal dihapus dan diganti isi file cadangan. Kata sandi utama bakal jadi kata sandi file cadangan itu.\n\nLanjutkan?'
     );
     if (!confirmed) return;
   }
 
   setStatus(els.restoreStatus, '');
-  setBusy(els.restoreBtn, true, 'Memulihkan…');
+  setBusy(els.restoreBtn, true, 'Lagi memulihkan… sabar…');
   try {
     const text = await file.text();
     const result = await importBackup(text, password, mode);
@@ -1720,17 +1720,17 @@ async function handleRestore() {
     await refreshAccounts();
     els.backupFile.value = '';
     els.backupPassword.value = '';
-    els.backupFileName.textContent = 'Belum ada file dipilih';
+    els.backupFileName.textContent = 'Belum ada file dipilih…';
     const message =
       result.mode === 'replace'
-        ? `Brankas diganti dengan ${result.added} akun dari cadangan.`
+        ? `Brankas diganti dengan ${result.added} akun dari cadangan. Mantap!`
         : result.added
-          ? `${result.added} akun dipulihkan${
+          ? `${result.added} akun berhasil dipulihkan${
               result.skipped
                 ? `, ${result.skipped} duplikat dilewati`
                 : ''
             }.`
-          : 'Tidak ada akun baru; semua akun di cadangan sudah ada.';
+          : 'Nggak ada akun baru; semua akun di cadangan udah ada.';
     setStatus(
       els.restoreStatus,
       message,
@@ -1739,13 +1739,13 @@ async function handleRestore() {
     showToast(
       els.toast,
       result.mode === 'replace'
-        ? 'Brankas berhasil diganti dari cadangan.'
+        ? 'Brankas berhasil diganti dari cadangan. Mantap!'
         : message,
       'success'
     );
   } catch (error) {
     if (error.message === 'WRONG_PASSWORD') {
-      setStatus(els.restoreStatus, 'Kata sandi cadangan salah.', 'error');
+      setStatus(els.restoreStatus, 'Kata sandi cadangan salah, gan. Coba lagi.', 'error');
       return;
     }
     if (handleSessionError(error)) return;
@@ -1766,28 +1766,28 @@ async function handleChangePassword(event) {
   const next = els.newPassword.value;
   const confirmation = els.confirmPassword.value;
   if (!current) {
-    showFormError(els.changePasswordError, 'Masukkan kata sandi saat ini.');
+    showFormError(els.changePasswordError, 'Masukkan kata sandi saat ini, gan.');
     return;
   }
   if (next.length < 8) {
-    showFormError(els.changePasswordError, 'Kata sandi baru minimal 8 karakter.');
+    showFormError(els.changePasswordError, 'Kata sandi baru minimal 8 karakter. Jangan pendek-pendek, ya!');
     return;
   }
   if (next !== confirmation) {
     showFormError(
       els.changePasswordError,
-      'Kata sandi baru dan konfirmasi tidak sama.'
+      'Kata sandi baru dan konfirmasinya beda. Ketik ulang, gan!'
     );
     return;
   }
 
-  setBusy(els.changePasswordBtn, true, 'Mengubah…');
+  setBusy(els.changePasswordBtn, true, 'Lagi mengubah… bip…');
   try {
     const result = await changeMasterPassword(current, next);
     state.key = result.key;
     els.changePasswordForm.reset();
     await refreshBackupMeta();
-    showToast(els.toast, 'Kata sandi utama diubah.');
+    showToast(els.toast, 'Kata sandi utama diubah. Beres!');
   } catch (error) {
     if (['LOCKED', 'NO_VAULT', 'INVALID_SESSION_KEY'].includes(error.message)) {
       handleSessionError(error);
@@ -1801,22 +1801,22 @@ async function handleChangePassword(event) {
 
 async function handleResetVault() {
   if (els.resetInput.value.trim() !== 'RESET') {
-    showToast(els.toast, 'Ketik RESET untuk mengonfirmasi.', 'error');
+    showToast(els.toast, 'Ketik RESET dulu buat konfirmasi, gan.', 'error');
     els.resetInput.focus();
     return;
   }
   const confirmed = window.confirm(
-    'Reset brankas sekarang?\n\nSemua akun di brankas ini akan dihapus dari Chrome. Cadangan terenkripsi yang sudah diunduh tetap bisa dipulihkan nanti.\n\nTindakan ini tidak bisa dibatalkan.'
+    'Reset brankas sekarang, gan?\n\nSemua akun di brankas ini bakal dihapus dari Chrome. Cadangan terenkripsi yang sudah diunduh tetap bisa dipulihkan nanti.\n\nTindakan ini nggak bisa dibatalkan!'
   );
   if (!confirmed) return;
 
-  setBusy(els.resetBtn, true, 'Mereset…');
+  setBusy(els.resetBtn, true, 'Lagi mereset… sabar…');
   try {
     await resetVault();
     state.activeTab = 'accounts';
     updateUrl();
     showGateSetup();
-    showToast(els.toast, 'Brankas direset. Buat kata sandi baru.');
+    showToast(els.toast, 'Brankas direset. Bikin kata sandi baru, ya!');
   } catch (error) {
     showToast(els.toast, errorMessage(error), 'error');
   } finally {
@@ -1876,7 +1876,7 @@ function bindRevealButtons() {
       button.setAttribute('aria-pressed', String(show));
       button.setAttribute(
         'aria-label',
-        show ? 'Sembunyikan kata sandi' : 'Tampilkan kata sandi'
+        show ? 'Tutup intipan kata sandi' : 'Intip kata sandi'
       );
       input.focus();
     });
@@ -1914,7 +1914,7 @@ function bindEvents() {
   els.cameraStartBtn.addEventListener('click', startCamera);
   els.cameraStopBtn.addEventListener('click', () => {
     stopCamera();
-    setStatus(els.cameraStatus, 'Kamera dihentikan.');
+    setStatus(els.cameraStatus, 'Kamera dihentikan. Sampai jumpa, QR!');
   });
   els.qrFileInput.addEventListener('change', handleQrFileInput);
   bindDropZone();
@@ -1973,12 +1973,12 @@ async function init() {
   } catch (error) {
     console.error('Gagal membuka brankas:', error);
     await lockVault();
-    showGateUnlock('Sesi tidak valid. Buka kunci lagi.');
+    showGateUnlock('Sesi nggak valid. Buka kunci lagi, ya.');
   }
 }
 
 init().catch((error) => {
   console.error('GembokGemas gagal dimuat:', error);
-  showGateUnlock('Gagal memuat brankas. Coba muat ulang halaman.');
+  showGateUnlock('Gagal muat brankas. Coba muat ulang halaman, gan.');
 });
 

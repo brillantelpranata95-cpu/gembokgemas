@@ -15,13 +15,13 @@ function readVarint(bytes, state) {
   let result = 0n;
   let shift = 0n;
   while (true) {
-    if (state.pos >= bytes.length) throw new Error('Data QR tidak lengkap.');
+    if (state.pos >= bytes.length) throw new Error('Data QR-nya kurang lengkap, gan.');
     const byte = bytes[state.pos];
     state.pos += 1;
     result |= BigInt(byte & 0x7f) << shift;
     if ((byte & 0x80) === 0) break;
     shift += 7n;
-    if (shift > 63n) throw new Error('Data QR tidak valid.');
+    if (shift > 63n) throw new Error('Data QR nggak valid, gan.');
   }
   return result;
 }
@@ -33,7 +33,7 @@ function readLengthDelimited(bytes, state) {
     length < 0 ||
     state.pos + length > bytes.length
   ) {
-    throw new Error('Data QR tidak valid.');
+    throw new Error('Data QR nggak valid, gan.');
   }
   const value = bytes.subarray(state.pos, state.pos + length);
   state.pos += length;
@@ -44,15 +44,15 @@ function skipField(bytes, state, wireType) {
   if (wireType === 0) {
     readVarint(bytes, state);
   } else if (wireType === 1) {
-    if (state.pos + 8 > bytes.length) throw new Error('Data QR tidak valid.');
+    if (state.pos + 8 > bytes.length) throw new Error('Data QR nggak valid, gan.');
     state.pos += 8;
   } else if (wireType === 2) {
     readLengthDelimited(bytes, state);
   } else if (wireType === 5) {
-    if (state.pos + 4 > bytes.length) throw new Error('Data QR tidak valid.');
+    if (state.pos + 4 > bytes.length) throw new Error('Data QR nggak valid, gan.');
     state.pos += 4;
   } else {
-    throw new Error('Data QR tidak valid.');
+    throw new Error('Data QR nggak valid, gan.');
   }
 }
 
@@ -139,12 +139,12 @@ function decodeMigrationData(data) {
   value = value.replace(/ /g, '+').replace(/[\r\n\t]/g, '');
   value = value.replace(/-/g, '+').replace(/_/g, '/');
   const remainder = value.length % 4;
-  if (remainder === 1) throw new Error('Data QR tidak valid.');
+  if (remainder === 1) throw new Error('Data QR nggak valid, gan.');
   if (remainder) value += '='.repeat(4 - remainder);
   try {
     return base64ToBytes(value);
   } catch {
-    throw new Error('Data QR tidak valid.');
+    throw new Error('Data QR nggak valid, gan.');
   }
 }
 
@@ -194,17 +194,17 @@ export function parseMigrationUrl(raw) {
   try {
     url = new URL(String(raw).trim());
   } catch {
-    throw new Error('Tautan migrasi tidak valid.');
+    throw new Error('Tautan migrasi nggak valid, gan.');
   }
   if (url.protocol !== 'otpauth-migration:') {
-    throw new Error('Bukan tautan migrasi Google Authenticator.');
+    throw new Error('Ini bukan tautan migrasi Google Authenticator, kok.');
   }
   const data = url.searchParams.get('data');
-  if (!data) throw new Error('Tautan migrasi tidak memiliki data.');
+  if (!data) throw new Error('Tautan migrasi nggak punya data, gan.');
 
   const payload = parseMigrationPayload(decodeMigrationData(data));
   if (!payload.otpParameters.length) {
-    throw new Error('QR tidak berisi akun.');
+    throw new Error('QR ini nggak berisi akun, gan.');
   }
 
   const accounts = [];
@@ -259,14 +259,14 @@ export function parseOtpAuthUri(raw) {
   try {
     url = new URL(String(raw).trim());
   } catch {
-    throw new Error('Tautan otpauth tidak valid.');
+    throw new Error('Tautan otpauth nggak valid, gan.');
   }
   if (url.protocol !== 'otpauth:') {
-    throw new Error('Bukan tautan otpauth://.');
+    throw new Error('Ini bukan tautan otpauth://, kok.');
   }
   const type = url.hostname.toLowerCase();
   if (type !== 'totp' && type !== 'hotp') {
-    throw new Error('Tipe OTP tidak didukung.');
+    throw new Error('Tipe OTP nggak didukung, gan.');
   }
 
   let label = '';
@@ -278,24 +278,24 @@ export function parseOtpAuthUri(raw) {
 
   const parameters = url.searchParams;
   const secretValue = parameters.get('secret');
-  if (!secretValue) throw new Error('Tautan tidak memiliki secret.');
+  if (!secretValue) throw new Error('Tautan ini nggak punya secret, gan.');
   const secret = base32Decode(secretValue);
 
   const algorithm = (parameters.get('algorithm') || 'SHA1')
     .toUpperCase()
     .replace(/[^A-Z0-9]/g, '');
   if (!OTP_ALGORITHMS.has(algorithm)) {
-    throw new Error('Algoritma OTP tidak didukung.');
+    throw new Error('Algoritma OTP nggak didukung, gan.');
   }
 
   const digits = Number(parameters.get('digits') || 6);
   if (!Number.isInteger(digits) || digits < 6 || digits > 8) {
-    throw new Error('Jumlah digit OTP tidak didukung.');
+    throw new Error('Jumlah digit OTP nggak didukung, gan.');
   }
 
   const period = Number(parameters.get('period') || 30);
   if (!Number.isInteger(period) || period < 1 || period > 3600) {
-    throw new Error('Periode OTP tidak didukung.');
+    throw new Error('Periode OTP nggak didukung, gan.');
   }
 
   const counter = Math.max(0, Math.floor(Number(parameters.get('counter') || 0)));
