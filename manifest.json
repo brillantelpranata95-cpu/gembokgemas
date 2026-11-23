@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "AuthVault — Authenticator 2FA",
+  "short_name": "AuthVault",
+  "version": "1.0.0",
+  "description": "Authenticator TOTP/HOTP offline dengan brankas terenkripsi dan impor QR resmi Google Authenticator.",
+  "minimum_chrome_version": "109",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_title": "AuthVault — Authenticator",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "permissions": [
+    "storage",
+    "clipboardWrite",
+    "activeTab",
+    "scripting"
+  ],
+  "options_ui": {
+    "page": "vault.html",
+    "open_in_tab": true
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  },
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA6xHgqCpry6LqCbJFDOuHJJ5vRmaRVTbjbnozqiKZDOeZPErAsSIS6ybNaw8BfzzoK0Ou80n+sAUB8N9/DSHBCsrXAnAV3xG3a1+dehaPuWNHJVt2kl+AS1reHUQ6t2Zp39neltPGWnFbFv6ZfF52y3t4FtGYf0Zx3eXTg3ynxMb9fK4CZ8w59GuXzzFr9BQATehBr2BGpvTw3gawQ72S3AIncMerpEzg80pXSAKTFxBrkJEJogCLeH/zrMo6hi8Fid0dQxfNzjBizb9BlK1W5EMbQFGXy1gJJcSO9yHzcgLdz5onuJIJP2w9fm6RsfXwx5/cJ00wVdJq/Trk1fNYyQIDAQAB"
+}
