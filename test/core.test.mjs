@@ -276,7 +276,9 @@ assert.equal(
 );
 
 const backup = await storage.exportBackup();
-assert.ok(backup.includes('"app": "authvault"'));
+assert.ok(backup.includes('"app": "gembokgemas"'));
+const legacyBackup = backup.replace('"app": "gembokgemas"', '"app": "authvault"');
+assert.ok(legacyBackup.includes('"app": "authvault"'));
 await assert.rejects(
   () => storage.importBackup(backup, 'wrong-password', 'merge'),
   /WRONG_PASSWORD/
@@ -295,6 +297,10 @@ assert.equal(unlocked.accounts.length, 2);
 const merge = await storage.importBackup(backup, 'password-123', 'merge');
 assert.equal(merge.added, 0);
 assert.equal(merge.skipped, 2);
+
+const legacyMerge = await storage.importBackup(legacyBackup, 'password-123', 'merge');
+assert.equal(legacyMerge.added, 0);
+assert.equal(legacyMerge.skipped, 2);
 
 // Sesi baru tidak memakai batas waktu dan bertahan sampai Chrome ditutup.
 assert.equal(await storage.isSessionActive(), true);

@@ -1,9 +1,9 @@
 {
-  "name": "authvault-extension",
+  "name": "gembokgemas-extension",
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Development tests for the AuthVault Chrome extension.",
+  "description": "Development tests for the GembokGemas Chrome extension.",
   "scripts": {
     "test": "node test/core.test.mjs"
   }

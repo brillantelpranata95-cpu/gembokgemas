@@ -1,15 +1,19 @@
-# AuthVault — Authenticator 2FA untuk Chrome
+# GembokGemas — Authenticator 2FA untuk Chrome
 
-AuthVault adalah ekstensi Chrome untuk menyimpan akun TOTP/HOTP dan membuat kode 2FA
+GembokGemas adalah ekstensi Chrome untuk menyimpan akun TOTP/HOTP dan membuat kode 2FA
 sepenuhnya offline. Secret disimpan dalam brankas terenkripsi dengan kata sandi utama,
 dan akun dapat diimpor dari Google Authenticator melalui QR ekspor resminya.
+
+Seluruh antarmuka memakai bahasa visual *candy desktop* 90-an: title bar, tombol bevel,
+pola checker, stiker miring, ticker berjalan, dan doodle CD / floppy / kaset. Palet
+biru/pink serta neobrutalisme tetap dipertahankan, dan semua aset dibuat lokal.
 
 > **Penting — tidak ada koneksi atau sinkronisasi langsung dengan Google Authenticator.**
 > Google Authenticator tidak menyediakan API publik, server sync pihak ketiga, atau cara
 > bagi aplikasi lain untuk membaca brankas di ponsel. Satu-satunya cara resmi memindahkan
 > akun adalah **Transfer accounts → Export accounts** di aplikasi Google Authenticator,
 > lalu memindai/mengunggah QR yang dihasilkan. Impor ini bersifat **salinan satu arah**:
-> akun baru yang ditambahkan ke ponsel setelahnya tidak otomatis muncul di AuthVault.
+> akun baru yang ditambahkan ke ponsel setelahnya tidak otomatis muncul di GembokGemas.
 > Ekspor ulang QR jika ingin memindahkan akun tambahan.
 
 ## Fitur
@@ -26,17 +30,38 @@ dan akun dapat diimpor dari Google Authenticator melalui QR ekspor resminya.
 - Isi kode TOTP langsung ke kolom verifikasi tab aktif lewat tombol **Isi** di
   popup. Akses hanya diberikan sementara saat popup dipakai, tanpa izin host
   permanen.
-- Tema candy biru/pink dengan doodle donat, kucing, bintang, dan hati.
+- Tema *candy desktop* 90-an dengan title bar, ticker, stiker, tombol bevel, pola
+  checker, dan doodle CD / floppy / kaset / smiley.
 - Ringan: CSS tanpa lapisan tema ganda dan decoder QR (257 KB) baru dimuat
   saat impor kamera/gambar benar-benar dipakai.
 - Tanpa server, tanpa analytics, dan tanpa permintaan jaringan.
 
+## Nuansa 90-an
+
+GembokGemas sengaja terasa seperti aplikasi desktop kecil dari era Windows 95–98 yang
+dipadu dengan majalah remaja: jendela biru dengan title bar bergaris, tombol cembung,
+stiker kuning miring bertuliskan **BARU!** dan **100% OFFLINE!**, ticker berjalan di
+bawah header, serta pola checker biru/pink sebagai latar. Doodle CD, floppy disk,
+kaset, hati, dan smiley digambar sebagai SVG lokal agar tetap tajam tanpa aset jaringan.
+
+Detail yang dipakai:
+
+- **Warna:** ink `#2a2140`, paper `#fff4fb`, biru `#7fc8ff`, pink `#ff92c8`,
+  pink-deep `#e63a8e`, lilac `#c9b6ff`, mint `#a9f0d8`, lemon `#ffe58a`.
+- **Bentuk:** border tebal, bayangan keras tanpa blur, sudut kecil, dan garis putus-putus
+  ala kotak dialog lama.
+- **Tipografi sistem:** Trebuchet MS untuk teks, Arial Black untuk judul, Comic Sans MS
+  untuk stiker, dan Lucida Console untuk kode. Tidak ada web font atau permintaan
+  jaringan.
+- **Easter egg teks:** “Est. 199X”, “Best viewed in 800×600”, dan “100% OFFLINE!” di
+  header, footer, serta empty state.
+
 ## Tampilan
 
-AuthVault memakai palet permen biru/pink dengan garis tebal dan bayangan keras
-yang tetap ramah dibaca. Doodle donat, kucing, bintang, dan hati digambar sebagai
-SVG/CSS lokal, jadi tidak ada aset atau permintaan jaringan tambahan. Ikon ekstensi
-berupa perisai merah muda bertelinga kucing agar tetap terasa lucu sekaligus aman.
+GembokGemas memakai palet permen biru/pink dengan garis tebal dan bayangan keras
+yang tetap ramah dibaca. Ikon ekstensi berupa gembok pink bertelinga kucing di atas
+pola checker biru/pink dengan starburst lemon, sehingga terasa lucu sekaligus aman.
+Semua ilustrasi adalah SVG/CSS lokal; tidak ada aset atau permintaan jaringan tambahan.
 
 Decoder QR `lib/jsQR.js` tidak dimuat saat halaman dibuka. File itu baru diambil
 ketika kamu menekan **Mulai kamera** atau mengunggah gambar QR, sehingga popup dan
@@ -44,7 +69,7 @@ halaman pengaturan terasa lebih cepat dibuka.
 
 ## Batasan yang perlu dipahami
 
-- **Bukan sinkronisasi langsung.** AuthVault tidak dapat membaca Google Authenticator
+- **Bukan sinkronisasi langsung.** GembokGemas tidak dapat membaca Google Authenticator
   di HP secara langsung. Impor hanya lewat QR ekspor resmi.
 - **Impor bersifat sementara/satu kali.** Perubahan di ponsel (akun baru, ganti label,
   hapus akun) tidak tercermin otomatis. Lakukan ekspor ulang bila perlu.
@@ -67,7 +92,7 @@ halaman pengaturan terasa lebih cepat dibuka.
 1. Buka `chrome://extensions` di Chrome.
 2. Aktifkan **Developer mode**.
 3. Klik **Load unpacked**, lalu pilih folder proyek ini (`D:\Authenticator`).
-4. Sematkan ikon AuthVault di toolbar.
+4. Sematkan ikon GembokGemas di toolbar.
 
 Manifest memakai `key` pengembangan dengan ID tetap
 `njgjjjckniihpfdekkdicelphjfmekfm`. Hapus/ganti `key` tersebut bila ekstensi akan
@@ -81,7 +106,7 @@ dipublikasikan ke Chrome Web Store.
 
 ### 1. Buat brankas
 
-Buka popup AuthVault atau halaman opsi, lalu buat kata sandi utama minimal 8 karakter.
+Buka popup GembokGemas atau halaman opsi, lalu buat kata sandi utama minimal 8 karakter.
 Gunakan kata sandi yang kuat dan unik; kata sandi ini melindungi seluruh secret 2FA.
 
 ### 2. Ekspor dari Google Authenticator
@@ -96,7 +121,7 @@ Gunakan kata sandi yang kuat dan unik; kata sandi ini melindungi seluruh secret 
 QR ekspor berisi secret asli. Jangan membagikannya, dan hapus screenshot QR setelah
 selesai digunakan.
 
-### 3. Impor ke AuthVault
+### 3. Impor ke GembokGemas
 
 Buka halaman **Impor** (dari popup: **Tambah akun**), lalu pilih metode:
 
@@ -129,11 +154,14 @@ ditandai **Sudah ada** dan tidak dipilih. Klik **Tambahkan N akun** untuk menyim
 
 Buka tab **Cadangan**:
 
-- **Unduh cadangan terenkripsi** menghasilkan file JSON brankas. File ini masih
-  terenkripsi dan membutuhkan kata sandi yang berlaku saat ekspor.
+- **Unduh cadangan terenkripsi** menghasilkan file JSON brankas dengan nama
+  `gembokgemas-backup-YYYY-MM-DD.json`. File ini masih terenkripsi dan membutuhkan
+  kata sandi yang berlaku saat ekspor.
 - **Pulihkan cadangan** mendukung mode **Gabungkan** (hanya menambah akun yang belum
   ada) atau **Ganti brankas** (menghapus akun saat ini dan memakai isi cadangan;
   kata sandi utama menjadi kata sandi file cadangan).
+- Cadangan dari versi lama (penanda `authvault`) tetap dapat dipulihkan; cadangan baru
+  memakai penanda `gembokgemas`.
 
 Disarankan membuat cadangan setelah menambah atau mengubah akun penting.
 
@@ -176,6 +204,7 @@ dilewati dengan catatan.
 manifest.json          Konfigurasi Manifest V3
 popup.html/css/js      Popup daftar akun dan kode
 vault.html/css/js      Halaman opsi: akun, impor, cadangan, pengaturan
+icons/                 Ikon GembokGemas 16/32/48/128 px
 src/crypto.js          PBKDF2, AES-GCM, utilitas Base64
 src/otp.js             HOTP/TOTP dan Base32
 src/autofill.js        Pengisian kode TOTP ke kolom verifikasi tab aktif
@@ -196,7 +225,7 @@ npm test
 
 Tes inti mencakup vektor RFC 4226/6238, Base32, parser protobuf migrasi, parser
 `otpauth://`, enkripsi/dekripsi, alur vault dengan mock `chrome.storage`, cadangan,
-perubahan kata sandi, dan pemeriksaan sesi.
+kompatibilitas cadangan lama, perubahan kata sandi, dan pemeriksaan sesi.
 
 Untuk pengujian manual, muat folder ini sebagai ekstensi unpacked. ID tetap
 `njgjjjckniihpfdekkdicelphjfmekfm` memungkinkan halaman diuji lewat
@@ -207,11 +236,11 @@ atau dengan alat CDP/Playwright pada Chromium.
 
 ## Privasi dan afiliasi
 
-AuthVault tidak berafiliasi dengan Google. Google Authenticator adalah merek dagang
+GembokGemas tidak berafiliasi dengan Google. Google Authenticator adalah merek dagang
 Google LLC. Ekstensi ini tidak mengirim data ke mana pun dan tidak memiliki server.
 
 ## Kredit
 
 - [jsQR](https://github.com/cozmo/jsQR) 1.4.0 oleh Cosmo Wolfe — Apache License 2.0.
   Salinan lisensi ada di `lib/LICENSE-jsQR.txt`.
-- Ikon AuthVault dibuat khusus untuk proyek ini.
+- Ikon GembokGemas dibuat khusus untuk proyek ini.

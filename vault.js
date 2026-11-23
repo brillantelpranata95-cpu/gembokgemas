@@ -1648,7 +1648,7 @@ async function handleExport() {
   setBusy(els.exportBtn, true, 'Menyiapkan cadangan…');
   try {
     const text = await exportBackup();
-    const filename = `authvault-backup-${formatDateForFile()}.json`;
+    const filename = `gembokgemas-backup-${formatDateForFile()}.json`;
     downloadText(filename, text);
     setStatus(els.exportStatus, `Cadangan terunduh: ${filename}`, 'success');
     showToast(els.toast, 'Cadangan terenkripsi diunduh.');
@@ -1978,7 +1978,7 @@ async function init() {
 }
 
 init().catch((error) => {
-  console.error('AuthVault gagal dimuat:', error);
+  console.error('GembokGemas gagal dimuat:', error);
   showGateUnlock('Gagal memuat brankas. Coba muat ulang halaman.');
 });
 

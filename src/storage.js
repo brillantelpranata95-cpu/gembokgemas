@@ -13,7 +13,7 @@ import { generateHOTP, base32Decode } from './otp.js';
 
 const VAULT_KEY = 'vault';
 const SESSION_KEY = 'unlocked';
-const WRITE_LOCK = 'authvault:vault-write';
+const WRITE_LOCK = 'gembokgemas:vault-write';
 const ALLOWED_ALGORITHMS = new Set(['SHA1', 'SHA256', 'SHA512']);
 
 async function readLocal(key) {
@@ -375,7 +375,7 @@ export async function exportBackup() {
   if (!vault) throw new Error('NO_VAULT');
   return JSON.stringify(
     {
-      app: 'authvault',
+      app: 'gembokgemas',
       format: 1,
       exportedAt: new Date().toISOString(),
       vault
@@ -392,7 +392,7 @@ function parseBackup(text) {
   } catch {
     throw new Error('INVALID_BACKUP');
   }
-  if (parsed?.app !== 'authvault' || parsed.format !== 1) {
+  if (!['gembokgemas', 'authvault'].includes(parsed?.app) || parsed.format !== 1) {
     throw new Error('INVALID_BACKUP');
   }
   const vault = parsed.vault;

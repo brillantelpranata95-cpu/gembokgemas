@@ -121,7 +121,7 @@ function resetReveals() {
 function showSetup() {
   resetSensitiveState();
   showPane(els.setupPane);
-  els.headerSub.textContent = 'Authenticator 2FA';
+  els.headerSub.textContent = 'Authenticator 2FA · Est. 199X';
   els.setupForm.reset();
   els.setupError.classList.add('hidden');
   els.setupError.textContent = '';
@@ -526,7 +526,7 @@ async function fillCodeIntoPage(account, row, button) {
     if (!tab.url) {
       showToast(
         els.toast,
-        'Akses halaman aktif tidak tersedia. Buka popup dari ikon AuthVault di toolbar.',
+        'Akses halaman aktif tidak tersedia. Buka popup dari ikon GembokGemas di toolbar.',
         'error'
       );
       return;
@@ -741,6 +741,6 @@ async function init() {
 }
 
 init().catch((error) => {
-  console.error('AuthVault gagal dimuat:', error);
+  console.error('GembokGemas gagal dimuat:', error);
   showUnlock('Gagal memuat brankas. Coba buka ulang ekstensi.');
 });
