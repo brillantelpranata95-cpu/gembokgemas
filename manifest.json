@@ -3,7 +3,7 @@
   "name": "GembokGemas — Authenticator 2FA",
   "short_name": "GembokGemas",
   "version": "1.0.0",
-  "description": "Brankas 2FA gemas ala 90-an: TOTP/HOTP offline, terenkripsi, dan impor QR Google Authenticator.",
+  "description": "Brankas 2FA ala desktop 90-an: TOTP/HOTP offline, terenkripsi, dan impor QR Google Authenticator.",
   "minimum_chrome_version": "109",
   "icons": {
     "16": "icons/icon16.png",

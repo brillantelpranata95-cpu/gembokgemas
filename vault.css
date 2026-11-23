@@ -1,7 +1,7 @@
 /* ============================================================
-   GembokGemas — candy desktop 90-an
+   GembokGemas — desktop 90-an
    Palet biru/pink + neobrutalisme, dengan title bar, bevel,
-   checker, sticker, dan doodle CD / floppy / kaset era 90-an.
+   checker, ticker, dan doodle CD / floppy / kaset era 90-an.
    ============================================================ */
 
 :root {
@@ -34,7 +34,7 @@
   --font: "Trebuchet MS", "Segoe UI", Tahoma, system-ui, sans-serif;
   --display: "Arial Black", "Segoe UI Black", "Trebuchet MS", system-ui,
     sans-serif;
-  --comic: "Comic Sans MS", "Comic Neue", "Trebuchet MS", cursive;
+  --label: "Lucida Console", "Courier New", ui-monospace, monospace;
   --mono: "Lucida Console", "Courier New", ui-monospace, monospace;
   --shadow-soft: 4px 4px 0 var(--ink);
   --shadow-tiny: 2px 2px 0 var(--ink);
@@ -71,9 +71,9 @@ body {
   color: var(--ink);
   background-color: var(--paper);
   background-image:
-    radial-gradient(circle at 6% 5%, rgba(127, 200, 255, 0.45), transparent 24rem),
-    radial-gradient(circle at 96% 4%, rgba(255, 146, 200, 0.42), transparent 22rem),
-    radial-gradient(circle at 92% 96%, rgba(201, 182, 255, 0.4), transparent 26rem),
+    radial-gradient(circle at 4% 4%, rgba(127, 200, 255, 0.55), transparent 26rem),
+    radial-gradient(circle at 98% 3%, rgba(255, 146, 200, 0.26), transparent 22rem),
+    radial-gradient(circle at 94% 98%, rgba(201, 182, 255, 0.3), transparent 26rem),
     var(--checker);
   background-size: auto, auto, auto, 28px 28px;
   font-family: var(--font);
@@ -154,7 +154,7 @@ input[type="search"]::-webkit-search-cancel-button {
   padding: 18px 18px 15px;
   background: var(--titlebar);
   border: 3px solid var(--ink);
-  border-radius: 12px 12px 8px 8px;
+  border-radius: 10px 10px 6px 6px;
   box-shadow:
     inset 0 2px 0 rgba(255, 255, 255, 0.82),
     6px 6px 0 var(--ink);
@@ -188,9 +188,8 @@ input[type="search"]::-webkit-search-cancel-button {
   height: 46px;
   background: var(--paper-2);
   border: 3px solid var(--ink);
-  border-radius: 8px;
+  border-radius: 6px;
   box-shadow: 3px 3px 0 var(--ink);
-  transform: rotate(-3deg);
 }
 
 .page-brand-text {
@@ -208,12 +207,11 @@ input[type="search"]::-webkit-search-cancel-button {
   border: 2px solid var(--ink);
   border-radius: 4px;
   box-shadow: 1.5px 1.5px 0 var(--ink);
-  font-family: var(--comic);
-  font-size: 10px;
+  font-family: var(--label);
+  font-size: 9px;
   font-weight: 700;
-  letter-spacing: 0.02em;
-  text-transform: none;
-  transform: rotate(-1deg);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .page-brand h1 {
@@ -234,19 +232,19 @@ input[type="search"]::-webkit-search-cancel-button {
     3px 3px 0 var(--pink-deep),
     4px 4px 0 var(--ink);
   -webkit-text-stroke: 1.5px var(--ink);
-  transform: rotate(-1.5deg);
 }
 
 .page-brand h1::after {
-  content: "★";
+  content: "";
   display: inline-block;
-  margin-left: 6px;
-  color: var(--lemon);
-  font-family: var(--font);
-  font-size: 15px;
-  text-shadow: 1.5px 1.5px 0 var(--ink);
+  width: 9px;
+  height: 9px;
+  margin-left: 8px;
+  background: var(--pink);
+  border: 2px solid var(--ink);
+  box-shadow: 1.5px 1.5px 0 var(--ink);
+  vertical-align: 7px;
   -webkit-text-stroke: 0;
-  transform: rotate(8deg) translateY(-4px);
 }
 
 .page-sticker {
@@ -259,13 +257,13 @@ input[type="search"]::-webkit-search-cancel-button {
   border: 2.5px solid var(--ink);
   border-radius: 4px;
   box-shadow: 2px 2px 0 var(--ink);
-  font-family: var(--comic);
-  font-size: 9.5px;
+  font-family: var(--label);
+  font-size: 9px;
   font-weight: 700;
-  letter-spacing: 0.02em;
-  line-height: 1.3;
+  letter-spacing: 0.05em;
+  line-height: 1.4;
+  text-transform: uppercase;
   white-space: nowrap;
-  transform: rotate(7deg);
 }
 
 .page-actions {
@@ -282,7 +280,7 @@ input[type="search"]::-webkit-search-cancel-button {
   height: 32px;
   padding: 0 11px;
   color: var(--ink);
-  background: linear-gradient(180deg, #fffdfe 0%, #fff0f7 100%);
+  background: linear-gradient(180deg, #fffdfe 0%, #eaf8ff 100%);
   border: 2.5px solid var(--ink);
   border-radius: 5px;
   box-shadow: var(--bevel), var(--shadow-tiny);
@@ -331,7 +329,7 @@ input[type="search"]::-webkit-search-cancel-button {
     linear-gradient(90deg, rgba(255, 146, 200, 0.12) 1px, transparent 1px);
   background-size: 19px 19px;
   border: 3px solid var(--ink);
-  border-radius: 10px;
+  border-radius: 8px;
   box-shadow: 9px 9px 0 var(--ink);
   animation: nb-pop 0.32s cubic-bezier(0.2, 1.3, 0.4, 1) both;
 }
@@ -370,17 +368,16 @@ input[type="search"]::-webkit-search-cancel-button {
   height: 55px;
   margin-bottom: 18px;
   color: var(--ink);
-  background-color: var(--pink);
+  background-color: var(--blue);
   background-image: var(--checker);
   background-size: 14px 14px;
   border: 3px solid var(--ink);
-  border-radius: 10px;
+  border-radius: 6px;
   box-shadow: var(--bevel), var(--shadow-soft);
-  transform: rotate(-3deg);
 }
 
 #gateUnlock .gate-icon {
-  background-color: var(--blue);
+  background-color: var(--pink);
 }
 
 .gate-kicker {
@@ -392,13 +389,12 @@ input[type="search"]::-webkit-search-cancel-button {
   border: 2px solid var(--ink);
   border-radius: 4px;
   box-shadow: var(--shadow-tiny);
-  font-family: var(--comic);
-  font-size: 10px;
+  font-family: var(--label);
+  font-size: 9px;
   font-weight: 700;
-  letter-spacing: 0.03em;
-  line-height: 1.4;
-  text-transform: none;
-  transform: rotate(-1deg);
+  letter-spacing: 0.05em;
+  line-height: 1.5;
+  text-transform: uppercase;
 }
 
 #gateUnlock .gate-kicker {
@@ -449,7 +445,6 @@ input[type="search"]::-webkit-search-cancel-button {
   width: 62px;
   height: 62px;
   pointer-events: none;
-  transform: rotate(9deg);
 }
 
 /* Forms ----------------------------------------------------- */
@@ -484,7 +479,7 @@ input[type="search"]::-webkit-search-cancel-button {
 .search-field input {
   width: 100%;
   color: var(--ink);
-  background: linear-gradient(180deg, #fffefb 0%, #fff9fc 100%);
+  background: linear-gradient(180deg, #fffefb 0%, #f7fcff 100%);
   border: 3px solid var(--ink);
   border-radius: 5px;
   outline: none;
@@ -531,7 +526,7 @@ input[type="search"]::-webkit-search-cancel-button {
   height: 31px;
   padding: 0;
   color: var(--ink);
-  background: linear-gradient(180deg, #fffdfe, #ffeaf4);
+  background: linear-gradient(180deg, #fffdfe, #eaf8ff);
   border: 2px solid transparent;
   border-radius: 4px;
 }
@@ -632,7 +627,7 @@ input[type="search"]::-webkit-search-cancel-button {
   height: 39px;
   padding: 0 16px;
   color: var(--ink);
-  background: linear-gradient(180deg, #fffdfe 0%, #fff0f7 100%);
+  background: linear-gradient(180deg, #fffdfe 0%, #eaf8ff 100%);
   border: 3px solid var(--ink);
   border-radius: 5px;
   box-shadow: var(--bevel), var(--shadow-soft);
@@ -667,11 +662,11 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .btn-primary {
-  background: linear-gradient(180deg, #ffc3e0 0%, var(--pink) 55%, #f56fb2 100%);
+  background: linear-gradient(180deg, #d8f0ff 0%, var(--blue) 55%, #55b0ea 100%);
 }
 
 .btn-primary:hover {
-  background: linear-gradient(180deg, #d8f0ff 0%, var(--blue) 55%, #55b0ea 100%);
+  background: linear-gradient(180deg, #ffc3e0 0%, var(--pink) 55%, #f56fb2 100%);
 }
 
 .btn-ghost {
@@ -724,7 +719,6 @@ input[type="search"]::-webkit-search-cancel-button {
   font-weight: 700;
   text-decoration: underline;
   text-decoration-color: var(--pink-deep);
-  text-decoration-style: wavy;
   text-decoration-thickness: 1.5px;
   text-underline-offset: 4px;
 }
@@ -791,14 +785,13 @@ input[type="search"]::-webkit-search-cancel-button {
   width: 27px;
   height: 27px;
   color: var(--ink);
-  background: var(--pink);
+  background: var(--blue);
   border: 2.5px solid var(--ink);
-  border-radius: 4px;
+  border-radius: 3px;
   box-shadow: var(--shadow-tiny);
-  font-family: var(--comic);
-  font-size: 14px;
+  font-family: var(--label);
+  font-size: 12px;
   font-weight: 700;
-  transform: rotate(-4deg);
 }
 
 .notice strong {
@@ -889,7 +882,7 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .tab.is-active::before {
-  content: "★ ";
+  content: "▸ ";
   color: var(--pink-deep);
 }
 
@@ -919,7 +912,7 @@ input[type="search"]::-webkit-search-cancel-button {
   gap: 6px;
   padding: 4px 9px;
   color: var(--ink);
-  background: linear-gradient(180deg, #fffdfe, #fff0f7);
+  background: linear-gradient(180deg, #fffdfe, #eaf8ff);
   border: 2.5px solid var(--ink);
   border-radius: 4px;
   box-shadow: var(--bevel), var(--shadow-tiny);
@@ -972,12 +965,12 @@ input[type="search"]::-webkit-search-cancel-button {
   border: 2px solid var(--ink);
   border-radius: 3px;
   box-shadow: 1.5px 1.5px 0 var(--ink);
-  font-family: var(--comic);
-  font-size: 9px;
+  font-family: var(--label);
+  font-size: 8.5px;
   font-weight: 700;
-  letter-spacing: 0;
+  letter-spacing: 0.02em;
   vertical-align: 3px;
-  transform: rotate(4deg);
+  text-transform: uppercase;
 }
 
 .heading-actions {
@@ -1085,12 +1078,11 @@ input[type="search"]::-webkit-search-cancel-button {
   color: var(--avatar-fg, var(--ink));
   background: var(--avatar-bg, var(--pink));
   border: 2.5px solid var(--ink);
-  border-radius: 6px;
+  border-radius: 4px;
   box-shadow: 2px 2px 0 var(--ink);
   font-family: var(--display);
   font-size: 13px;
   font-weight: 900;
-  transform: rotate(-2deg);
 }
 
 .service-name {
@@ -1197,33 +1189,32 @@ input[type="search"]::-webkit-search-cancel-button {
   height: 92px;
   margin-bottom: 15px;
   color: var(--ink);
-  background-color: var(--pink-soft);
+  background-color: var(--blue-soft);
   background-image: var(--checker);
   background-size: 17px 17px;
   border: 3px solid var(--ink);
-  border-radius: 14px;
+  border-radius: 6px;
   box-shadow: 6px 6px 0 var(--ink);
-  transform: rotate(-2deg);
 }
 
 .empty-visual::after {
-  content: "★";
+  content: "0";
   position: absolute;
-  top: -10px;
-  right: -10px;
+  top: -9px;
+  right: -9px;
   display: grid;
   place-items: center;
-  width: 28px;
-  height: 28px;
+  width: 25px;
+  height: 25px;
   color: var(--ink);
   background: var(--lemon);
   border: 2.5px solid var(--ink);
-  border-radius: 50%;
+  border-radius: 3px;
   box-shadow: 1.5px 1.5px 0 var(--ink);
-  font-family: var(--comic);
-  font-size: 14px;
+  font-family: var(--label);
+  font-size: 10px;
+  font-weight: 700;
   line-height: 1;
-  transform: rotate(12deg);
 }
 
 .empty-state h3 {
@@ -1256,7 +1247,7 @@ input[type="search"]::-webkit-search-cancel-button {
   padding: 33px 24px 24px;
   background: var(--paper-2);
   border: 3px solid var(--ink);
-  border-radius: 8px;
+  border-radius: 6px;
   box-shadow: 6px 6px 0 var(--ink);
 }
 
@@ -1356,12 +1347,11 @@ input[type="search"]::-webkit-search-cancel-button {
   border: 2px solid var(--ink);
   border-radius: 4px;
   box-shadow: var(--shadow-tiny);
-  font-family: var(--comic);
-  font-size: 9.5px;
+  font-family: var(--label);
+  font-size: 8.5px;
   font-weight: 700;
-  letter-spacing: 0.03em;
-  text-transform: none;
-  transform: rotate(-1deg);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .steps {
@@ -1412,7 +1402,7 @@ input[type="search"]::-webkit-search-cancel-button {
   gap: 5px;
   margin: 15px 0 18px;
   padding: 4px;
-  background: linear-gradient(180deg, #fffdfe, #fff0f7);
+  background: linear-gradient(180deg, #fffdfe, #eaf8ff);
   border: 3px solid var(--ink);
   border-radius: 6px;
   box-shadow: var(--bevel), var(--shadow-soft);
@@ -1447,7 +1437,7 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .method-tab.is-active::before {
-  content: "★ ";
+  content: "▸ ";
   color: var(--pink-deep);
 }
 
@@ -1635,7 +1625,7 @@ input[type="search"]::-webkit-search-cancel-button {
 
 .drop-zone:hover,
 .drop-zone.is-dragging {
-  background-color: var(--pink-soft);
+  background-color: var(--blue-soft);
 }
 
 .drop-zone svg {
@@ -2016,7 +2006,6 @@ input[type="search"]::-webkit-search-cancel-button {
   margin-top: auto;
   padding: 32px 2px 0;
   color: #6e6455;
-  font-family: var(--comic);
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.015em;
@@ -2039,7 +2028,7 @@ input[type="search"]::-webkit-search-cancel-button {
   color: var(--ink);
   background: var(--paper-2);
   border: 3px solid var(--ink);
-  border-radius: 8px;
+  border-radius: 6px;
   box-shadow: 10px 10px 0 var(--ink);
 }
 
@@ -2105,7 +2094,7 @@ input[type="search"]::-webkit-search-cancel-button {
   text-align: center;
   pointer-events: none;
   opacity: 0;
-  transform: translate(-50%, 10px) rotate(-1deg);
+  transform: translate(-50%, 10px);
   transition:
     opacity 0.18s ease,
     transform 0.18s ease;
@@ -2113,7 +2102,7 @@ input[type="search"]::-webkit-search-cancel-button {
 
 .toast.show {
   opacity: 1;
-  transform: translate(-50%, 0) rotate(-1deg);
+  transform: translate(-50%, 0);
 }
 
 .toast[data-tone="error"] {
@@ -2138,34 +2127,30 @@ input[type="search"]::-webkit-search-cancel-button {
   opacity: 0.5;
 }
 
-.doodle-donut {
+.doodle-chip {
   top: 104px;
   right: -50px;
   width: 84px;
-  transform: rotate(10deg);
 }
 
-.doodle-cat {
+.doodle-monitor {
   top: 330px;
   left: -26px;
   width: 94px;
   opacity: 0.38 !important;
-  transform: rotate(-8deg);
 }
 
 .doodle-star {
   right: -40px;
   bottom: 128px;
   width: 58px;
-  transform: rotate(12deg);
 }
 
-.doodle-heart {
+.doodle-cursor {
   bottom: 46px;
   left: -20px;
-  width: 38px;
+  width: 42px;
   opacity: 0.42 !important;
-  transform: rotate(-10deg);
 }
 
 .doodle-cd {
@@ -2173,7 +2158,6 @@ input[type="search"]::-webkit-search-cancel-button {
   right: -38px;
   width: 82px;
   opacity: 0.38 !important;
-  transform: rotate(-10deg);
 }
 
 .doodle-floppy {
@@ -2181,7 +2165,6 @@ input[type="search"]::-webkit-search-cancel-button {
   left: -40px;
   width: 80px;
   opacity: 0.36 !important;
-  transform: rotate(8deg);
 }
 
 .doodle-cassette {
@@ -2189,15 +2172,13 @@ input[type="search"]::-webkit-search-cancel-button {
   right: -52px;
   width: 104px;
   opacity: 0.34 !important;
-  transform: rotate(6deg);
 }
 
-.doodle-smiley {
+.doodle-window {
   bottom: 390px;
   left: -24px;
-  width: 54px;
+  width: 56px;
   opacity: 0.38 !important;
-  transform: rotate(-9deg);
 }
 
 /* Scrollbar ------------------------------------------------- */
@@ -2267,14 +2248,14 @@ input[type="search"]::-webkit-search-cancel-button {
 /* Responsive ------------------------------------------------ */
 
 @media (max-width: 1200px) {
-  .doodle-cat,
+  .doodle-monitor,
   .doodle-star,
-  .doodle-donut,
-  .doodle-heart,
+  .doodle-chip,
+  .doodle-cursor,
   .doodle-cd,
   .doodle-floppy,
   .doodle-cassette,
-  .doodle-smiley {
+  .doodle-window {
     display: none;
   }
 }
@@ -2309,7 +2290,10 @@ input[type="search"]::-webkit-search-cancel-button {
   }
 
   .page-brand h1::after {
-    font-size: 13px;
+    width: 7px;
+    height: 7px;
+    margin-left: 6px;
+    vertical-align: 5px;
   }
 
   .doodle-scatter {

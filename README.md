@@ -4,9 +4,10 @@ GembokGemas adalah ekstensi Chrome untuk menyimpan akun TOTP/HOTP dan membuat ko
 sepenuhnya offline. Secret disimpan dalam brankas terenkripsi dengan kata sandi utama,
 dan akun dapat diimpor dari Google Authenticator melalui QR ekspor resminya.
 
-Seluruh antarmuka memakai bahasa visual *candy desktop* 90-an: title bar, tombol bevel,
-pola checker, stiker miring, ticker berjalan, dan doodle CD / floppy / kaset. Palet
-biru/pink serta neobrutalisme tetap dipertahankan, dan semua aset dibuat lokal.
+Seluruh antarmuka memakai bahasa visual desktop 90-an: title bar, tombol bevel,
+pola checker, ticker berjalan, dan doodle CD / floppy / kaset. Palet biru/pink
+serta neobrutalisme tetap dipertahankan, dengan biru sebagai warna struktur dan
+pink sebagai aksen. Semua aset dibuat lokal.
 
 > **Penting — tidak ada koneksi atau sinkronisasi langsung dengan Google Authenticator.**
 > Google Authenticator tidak menyediakan API publik, server sync pihak ketiga, atau cara
@@ -30,38 +31,39 @@ biru/pink serta neobrutalisme tetap dipertahankan, dan semua aset dibuat lokal.
 - Isi kode TOTP langsung ke kolom verifikasi tab aktif lewat tombol **Isi** di
   popup. Akses hanya diberikan sementara saat popup dipakai, tanpa izin host
   permanen.
-- Tema *candy desktop* 90-an dengan title bar, ticker, stiker, tombol bevel, pola
-  checker, dan doodle CD / floppy / kaset / smiley.
+- Tema desktop 90-an dengan title bar, ticker, tombol bevel, pola checker, dan
+  doodle CD / floppy / kaset / CRT.
 - Ringan: CSS tanpa lapisan tema ganda dan decoder QR (257 KB) baru dimuat
   saat impor kamera/gambar benar-benar dipakai.
 - Tanpa server, tanpa analytics, dan tanpa permintaan jaringan.
 
 ## Nuansa 90-an
 
-GembokGemas sengaja terasa seperti aplikasi desktop kecil dari era Windows 95–98 yang
-dipadu dengan majalah remaja: jendela biru dengan title bar bergaris, tombol cembung,
-stiker kuning miring bertuliskan **BARU!** dan **100% OFFLINE!**, ticker berjalan di
-bawah header, serta pola checker biru/pink sebagai latar. Doodle CD, floppy disk,
-kaset, hati, dan smiley digambar sebagai SVG lokal agar tetap tajam tanpa aset jaringan.
+GembokGemas sengaja terasa seperti aplikasi desktop kecil dari era Windows 95–98:
+jendela biru dengan title bar bergaris, tombol cembung, label kuning bertuliskan
+**BARU** dan **100% OFFLINE**, ticker berjalan di bawah header, serta pola checker
+biru/pink sebagai latar. Doodle CD, floppy disk, kaset, chip, monitor CRT, dan
+pointer digambar sebagai SVG lokal agar tetap tajam tanpa aset jaringan.
 
 Detail yang dipakai:
 
 - **Warna:** ink `#2a2140`, paper `#fff4fb`, biru `#7fc8ff`, pink `#ff92c8`,
   pink-deep `#e63a8e`, lilac `#c9b6ff`, mint `#a9f0d8`, lemon `#ffe58a`.
+  Biru dipakai untuk struktur utama, pink untuk aksen dan status.
 - **Bentuk:** border tebal, bayangan keras tanpa blur, sudut kecil, dan garis putus-putus
-  ala kotak dialog lama.
-- **Tipografi sistem:** Trebuchet MS untuk teks, Arial Black untuk judul, Comic Sans MS
-  untuk stiker, dan Lucida Console untuk kode. Tidak ada web font atau permintaan
-  jaringan.
-- **Easter egg teks:** “Est. 199X”, “Best viewed in 800×600”, dan “100% OFFLINE!” di
+  ala kotak dialog lama. Tidak ada elemen scrapbook atau stiker miring.
+- **Tipografi sistem:** Trebuchet MS untuk teks, Arial Black untuk judul, dan Lucida
+  Console untuk label kecil serta kode. Tidak ada web font atau permintaan jaringan.
+- **Easter egg teks:** “Est. 199X”, “Best viewed in 800×600”, dan “100% OFFLINE” di
   header, footer, serta empty state.
 
 ## Tampilan
 
-GembokGemas memakai palet permen biru/pink dengan garis tebal dan bayangan keras
-yang tetap ramah dibaca. Ikon ekstensi berupa gembok pink bertelinga kucing di atas
-pola checker biru/pink dengan starburst lemon, sehingga terasa lucu sekaligus aman.
-Semua ilustrasi adalah SVG/CSS lokal; tidak ada aset atau permintaan jaringan tambahan.
+GembokGemas memakai palet biru/pink dengan garis tebal dan bayangan keras yang tetap
+ramah dibaca. Ikon ekstensi berupa gembok netral dengan badan pink, shackle biru, dan
+latar checker biru/pink, sehingga mudah dikenali di toolbar tanpa terlihat kekanak-
+kanakan. Semua ilustrasi adalah SVG/CSS lokal; tidak ada aset atau permintaan jaringan
+tambahan.
 
 Decoder QR `lib/jsQR.js` tidak dimuat saat halaman dibuka. File itu baru diambil
 ketika kamu menekan **Mulai kamera** atau mengunggah gambar QR, sehingga popup dan
