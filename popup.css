@@ -266,7 +266,6 @@ textarea:focus-visible {
 .ticker-track {
   display: flex;
   width: max-content;
-  animation: ticker-scroll 26s linear infinite;
 }
 
 .ticker-track span {
@@ -295,7 +294,6 @@ textarea:focus-visible {
 
 .pane {
   min-height: 0;
-  animation: pane-in 0.2s ease both;
 }
 
 .main-pane {
@@ -956,15 +954,6 @@ textarea:focus-visible {
   background-size: 12px 12px, auto;
 }
 
-.gate-doodle {
-  position: absolute;
-  top: 10px;
-  right: 14px;
-  width: 42px;
-  height: 42px;
-  pointer-events: none;
-}
-
 .gate-kicker {
   display: inline-block;
   align-self: flex-start;
@@ -1133,30 +1122,6 @@ textarea:focus-visible {
   align-self: center;
 }
 
-@keyframes shake {
-  10%,
-  90% {
-    transform: translateX(-1px);
-  }
-  20%,
-  80% {
-    transform: translateX(2px);
-  }
-  30%,
-  50%,
-  70% {
-    transform: translateX(-3px);
-  }
-  40%,
-  60% {
-    transform: translateX(3px);
-  }
-}
-
-.form.shake {
-  animation: shake 0.35s ease both;
-}
-
 /* Toast ----------------------------------------------------- */
 
 .toast {
@@ -1196,29 +1161,6 @@ textarea:focus-visible {
   background: var(--mint);
 }
 
-/* Doodle watermark ------------------------------------------ */
-
-.popup-doodle {
-  position: absolute;
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0.16;
-}
-
-.doodle-cd {
-  right: -20px;
-  bottom: 68px;
-  width: 96px;
-  height: 96px;
-}
-
-.doodle-cross {
-  top: 98px;
-  left: -16px;
-  width: 46px;
-  height: 46px;
-}
-
 /* Scrollbars ------------------------------------------------ */
 
 .account-list::-webkit-scrollbar,
@@ -1251,23 +1193,6 @@ textarea:focus-visible {
   }
 }
 
-@keyframes pane-in {
-  from {
-    opacity: 0;
-    transform: translateY(3px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes ticker-scroll {
-  to {
-    transform: translateX(-50%);
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -1275,14 +1200,5 @@ textarea:focus-visible {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-  }
-
-  .ticker-track {
-    animation: none;
-    justify-content: center;
-  }
-
-  .ticker-track span:last-child {
-    display: none;
   }
 }

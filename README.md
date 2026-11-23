@@ -41,9 +41,10 @@ pink sebagai aksen. Semua aset dibuat lokal.
 
 GembokGemas sengaja terasa seperti aplikasi desktop kecil dari era Windows 95–98:
 jendela biru dengan title bar bergaris, tombol cembung, label kuning bertuliskan
-**BARU** dan **100% OFFLINE**, ticker berjalan di bawah header, serta pola checker
-biru/pink sebagai latar. Doodle CD, floppy disk, kaset, chip, monitor CRT, dan
-pointer digambar sebagai SVG lokal agar tetap tajam tanpa aset jaringan.
+**BARU** dan **100% OFFLINE**, ticker statis di bawah header, serta pola checker
+biru/pink sebagai latar. Fungsi diutamakan daripada tampilan: seluruh doodle
+dekoratif dan animasi tema dihapus supaya markup dan stylesheet tetap ringan,
+sedangkan title bar, bevel, checker, dan bayangan keras dipertahankan.
 
 Detail yang dipakai:
 
@@ -65,9 +66,10 @@ latar checker biru/pink, sehingga mudah dikenali di toolbar tanpa terlihat kekan
 kanakan. Semua ilustrasi adalah SVG/CSS lokal; tidak ada aset atau permintaan jaringan
 tambahan.
 
-Decoder QR `lib/jsQR.js` tidak dimuat saat halaman dibuka. File itu baru diambil
-ketika kamu menekan **Mulai kamera** atau mengunggah gambar QR, sehingga popup dan
-halaman pengaturan terasa lebih cepat dibuka.
+Decoder QR `lib/jsQR.js`, parser impor, dan pengisi OTP baru dimuat saat fitur
+terkait benar-benar dipakai. Tema juga sengaja dipangkas: tanpa doodle dekoratif,
+tanpa animasi, dan tanpa lapisan CSS ganda. Popup dan halaman pengaturan dibuka
+dalam puluhan milidetik setelah Chrome siap.
 
 ## Batasan yang perlu dipahami
 

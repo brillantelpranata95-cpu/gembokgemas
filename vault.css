@@ -331,7 +331,6 @@ input[type="search"]::-webkit-search-cancel-button {
   border: 3px solid var(--ink);
   border-radius: 8px;
   box-shadow: 9px 9px 0 var(--ink);
-  animation: nb-pop 0.32s cubic-bezier(0.2, 1.3, 0.4, 1) both;
 }
 
 .gate-card::before {
@@ -438,14 +437,6 @@ input[type="search"]::-webkit-search-cancel-button {
   color: var(--ink);
 }
 
-.gate-doodle {
-  position: absolute;
-  top: 24px;
-  right: 22px;
-  width: 62px;
-  height: 62px;
-  pointer-events: none;
-}
 
 /* Forms ----------------------------------------------------- */
 
@@ -821,7 +812,6 @@ input[type="search"]::-webkit-search-cancel-button {
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
-  animation: rise-in 0.28s ease both;
 }
 
 .workspace-bar {
@@ -929,7 +919,6 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .panel {
-  animation: fade-in 0.22s ease both;
 }
 
 .panel-heading {
@@ -1458,7 +1447,6 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .method-panel {
-  animation: fade-in 0.18s ease both;
 }
 
 .camera-box {
@@ -2113,74 +2101,6 @@ input[type="search"]::-webkit-search-cancel-button {
   background: var(--mint);
 }
 
-/* Doodles --------------------------------------------------- */
-
-.doodle-scatter {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-}
-
-.doodle-scatter .doodle {
-  position: absolute;
-  opacity: 0.5;
-}
-
-.doodle-chip {
-  top: 104px;
-  right: -50px;
-  width: 84px;
-}
-
-.doodle-monitor {
-  top: 330px;
-  left: -26px;
-  width: 94px;
-  opacity: 0.38 !important;
-}
-
-.doodle-star {
-  right: -40px;
-  bottom: 128px;
-  width: 58px;
-}
-
-.doodle-cursor {
-  bottom: 46px;
-  left: -20px;
-  width: 42px;
-  opacity: 0.42 !important;
-}
-
-.doodle-cd {
-  top: 252px;
-  right: -38px;
-  width: 82px;
-  opacity: 0.38 !important;
-}
-
-.doodle-floppy {
-  bottom: 196px;
-  left: -40px;
-  width: 80px;
-  opacity: 0.36 !important;
-}
-
-.doodle-cassette {
-  top: 760px;
-  right: -52px;
-  width: 104px;
-  opacity: 0.34 !important;
-}
-
-.doodle-window {
-  bottom: 390px;
-  left: -24px;
-  width: 56px;
-  opacity: 0.38 !important;
-}
-
 /* Scrollbar ------------------------------------------------- */
 
 ::-webkit-scrollbar {
@@ -2204,37 +2124,6 @@ input[type="search"]::-webkit-search-cancel-button {
 
 /* Motion ---------------------------------------------------- */
 
-@keyframes rise-in {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes nb-pop {
-  from {
-    opacity: 0;
-    transform: translateY(10px) scale(0.97);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -2246,19 +2135,6 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 /* Responsive ------------------------------------------------ */
-
-@media (max-width: 1200px) {
-  .doodle-monitor,
-  .doodle-star,
-  .doodle-chip,
-  .doodle-cursor,
-  .doodle-cd,
-  .doodle-floppy,
-  .doodle-cassette,
-  .doodle-window {
-    display: none;
-  }
-}
 
 @media (max-width: 980px) {
   .import-grid,
@@ -2294,10 +2170,6 @@ input[type="search"]::-webkit-search-cancel-button {
     height: 7px;
     margin-left: 6px;
     vertical-align: 5px;
-  }
-
-  .doodle-scatter {
-    display: none;
   }
 
   .panel-heading {
@@ -2393,13 +2265,6 @@ input[type="search"]::-webkit-search-cancel-button {
 
   .gate-card h1 {
     font-size: 24px;
-  }
-
-  .gate-doodle {
-    top: 16px;
-    right: 14px;
-    width: 48px;
-    height: 48px;
   }
 
   .empty-actions {
