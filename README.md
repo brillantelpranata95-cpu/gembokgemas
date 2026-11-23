@@ -5,9 +5,9 @@ sepenuhnya offline. Secret disimpan dalam brankas terenkripsi dengan kata sandi 
 dan akun dapat diimpor dari Google Authenticator melalui QR ekspor resminya.
 
 Seluruh antarmuka memakai bahasa visual desktop 90-an: title bar, tombol bevel,
-pola checker, ticker berjalan, dan doodle CD / floppy / kaset. Palet biru/pink
-serta neobrutalisme tetap dipertahankan, dengan biru sebagai warna struktur dan
-pink sebagai aksen. Semua aset dibuat lokal.
+pola checker, dan ticker statis. Palet biru/pink serta neobrutalisme tetap
+dipertahankan, dengan biru sebagai warna struktur dan pink sebagai aksen.
+Semua aset dibuat lokal, dan teksnya bernada ngobrol jadul yang lucu.
 
 > **Penting — tidak ada koneksi atau sinkronisasi langsung dengan Google Authenticator.**
 > Google Authenticator tidak menyediakan API publik, server sync pihak ketiga, atau cara
@@ -16,6 +16,23 @@ pink sebagai aksen. Semua aset dibuat lokal.
 > lalu memindai/mengunggah QR yang dihasilkan. Impor ini bersifat **salinan satu arah**:
 > akun baru yang ditambahkan ke ponsel setelahnya tidak otomatis muncul di GembokGemas.
 > Ekspor ulang QR jika ingin memindahkan akun tambahan.
+
+## Cara pasang dari GitHub Release
+
+1. Buka tab **Releases** di repo ini, lalu unduh `gembokgemas-1.0.0.zip`.
+2. Ekstrak ZIP itu ke satu folder, misalnya `GembokGemas`.
+3. Di Chrome, buka `chrome://extensions`.
+4. Aktifkan **Developer mode** di pojok kanan atas.
+5. Klik **Load unpacked**, lalu pilih folder hasil ekstrak.
+
+Ikon GembokGemas akan muncul di toolbar. Kata sandi utama dibuat saat pertama kali
+membuka popup. Untuk memperbarui, ekstrak ZIP versi baru ke folder yang sama lalu
+klik tombol **reload** pada kartu ekstensi — brankas tersimpan di Chrome, jadi
+tidak hilang. ID ekstensi tetap `njgjjjckniihpfdekkdicelphjfmekfm` karena kunci
+publik tertanam di `manifest.json`.
+
+> Chrome sudah tidak mengizinkan website memasang ekstensi otomatis, jadi langkah
+> **Load unpacked** di atas perlu dilakukan sekali saja per profil Chrome.
 
 ## Fitur
 
@@ -31,8 +48,7 @@ pink sebagai aksen. Semua aset dibuat lokal.
 - Isi kode TOTP langsung ke kolom verifikasi tab aktif lewat tombol **Isi** di
   popup. Akses hanya diberikan sementara saat popup dipakai, tanpa izin host
   permanen.
-- Tema desktop 90-an dengan title bar, ticker, tombol bevel, pola checker, dan
-  doodle CD / floppy / kaset / CRT.
+- Tema desktop 90-an dengan title bar, ticker statis, tombol bevel, dan pola checker.
 - Ringan: CSS tanpa lapisan tema ganda. Decoder QR (257 KB), parser impor, dan
   pengisi OTP baru dimuat saat fitur terkait benar-benar dipakai.
 - Tanpa server, tanpa analytics, dan tanpa permintaan jaringan.
